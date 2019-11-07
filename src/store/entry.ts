@@ -228,6 +228,15 @@ class EntryStore implements IEntryStore {
         const res = await api.answer.getTestProblemEntering(data.id)
 
         if (res.success) {
+            if ((res.data.status === 1 || res.data.status === 2) && res.data.testStatus === 1) {
+                navigate('/')
+            } else if (res.data.status === 3 && res.data.testStatus === 1) {
+                navigate('/')
+                return
+            } else if (res.data.status === 4 && res.data.testStatus === 3) {
+                navigate('/')
+                return
+            }
             let sessionCurrentType = sessionStorage.getItem('sessionCurrentType')
             if (sessionCurrentType) {
                 let datas = JSON.parse(sessionCurrentType)

@@ -1,5 +1,7 @@
 import { observable, action } from 'mobx'
 import { Value } from 'slate'
+import { navigate } from '@reach/router'
+
 import api from '../api'
 
 export interface IProblems {
@@ -200,6 +202,18 @@ class SubmitStore implements ISubmitStore {
         this.gettingTestProblem = true
         const res = await api.answer.getTestProblem(id)
         if (res.success) {
+            if ((res.data.status === 1 || res.data.status === 2) && res.data.testStatus === 1) {
+                navigate('/')
+            } else if (
+                (res.data.status === 1 || res.data.status === 2 || res.data.status === 3) &&
+                res.data.testStatus === 3
+            ) {
+                navigate('/')
+                return
+            } else if (res.data.status === 4 && res.data.testStatus === 3) {
+                navigate('/')
+                return
+            }
             let sessionCurrentType = sessionStorage.getItem('sessionCurrentType')
             if (sessionCurrentType) {
                 let datas = JSON.parse(sessionCurrentType)

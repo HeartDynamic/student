@@ -2,9 +2,10 @@ import React, { FC, useContext } from 'react'
 import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
-import { IStore } from '../../../store'
+import { Value } from 'slate'
 
-import PlanView from '../common/PlanView'
+import { IStore } from '../../../store'
+import Editor from '../../../components/EditorX'
 import Knowledge from './Knowledge'
 import FractionListA from './FractionListA'
 
@@ -198,7 +199,10 @@ const FillingProblemList: FC = props => {
                                 </TagWrap>
                                 <Content>
                                     <TopicWrap>
-                                        <PlanView data={entryStore.testProblemDetailData.topic} />
+                                        <Editor
+                                            value={Value.fromJSON(entryStore.testProblemDetailData.topic)}
+                                            readonly
+                                        ></Editor>
                                     </TopicWrap>
                                     <AnswerWrap>
                                         <AnswerSpan>答案</AnswerSpan>
@@ -207,7 +211,7 @@ const FillingProblemList: FC = props => {
                                                 <AnswerItem key={index}>
                                                     <ItemIndex>{index + 1}</ItemIndex>
                                                     <RichTextWrap>
-                                                        <PlanView data={item.value} />
+                                                        <Editor value={Value.fromJSON(item.value)} readonly></Editor>
                                                     </RichTextWrap>
                                                 </AnswerItem>
                                             ))}
@@ -216,7 +220,10 @@ const FillingProblemList: FC = props => {
                                     <SolutionWrap>
                                         <SolutionSpan>解析</SolutionSpan>
                                         <Solution>
-                                            <PlanView data={entryStore.testProblemDetailData.solution} />
+                                            <Editor
+                                                value={Value.fromJSON(entryStore.testProblemDetailData.topic)}
+                                                readonly
+                                            ></Editor>
                                         </Solution>
                                     </SolutionWrap>
                                 </Content>
@@ -230,7 +237,7 @@ const FillingProblemList: FC = props => {
                                         <AnswerItem key={index}>
                                             <ItemIndex>{index + 1}</ItemIndex>
                                             <RichTextWrap>
-                                                <PlanView data={item.value} />
+                                                <Editor value={Value.fromJSON(item.value)} readonly></Editor>
                                             </RichTextWrap>
                                         </AnswerItem>
                                     ))}

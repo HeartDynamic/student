@@ -2,7 +2,6 @@ import React, { useEffect, FC, useContext } from 'react'
 import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
-import { when } from 'mobx'
 import { navigate } from '@reach/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
@@ -111,11 +110,9 @@ const Pending: FC = props => {
             page: 1,
             limit: 10,
         }
-        when(
-            () => !mainStore.getTingTaskTestList && !mainStore.getTaskTestListReady,
-            () => mainStore.getTaskTestList(data)
-        )
-    })
+        mainStore.getTaskTestList(data)
+        // eslint-disable-next-line
+    }, [])
 
     const handleClickLink = (data: IAllTestList) => {
         sessionStorage.removeItem('sessionCurrentType')

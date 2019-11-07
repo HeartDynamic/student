@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { useObserver } from 'mobx-react-lite'
+import { Value } from 'slate'
 
-import PlanView from '../common/PlanView'
+import Editor from '../../../components/EditorX'
 
 const MyAnswerLi = styled.div`
     display: flex;
@@ -39,7 +40,7 @@ const OptionC = (props: IProps) => {
             <MyAnswerLi>
                 <NUmber>{props.data.index + 1}</NUmber>
                 <MyEditorWrapList>
-                    <PlanView data={props.data.value} />
+                    <Editor value={Value.fromJSON(props.data.value)} readonly></Editor>
                 </MyEditorWrapList>
             </MyAnswerLi>
         )

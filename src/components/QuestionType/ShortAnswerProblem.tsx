@@ -190,7 +190,6 @@ const ShortAnswerProblem: FC<Iprops> = props => {
             props.onClickSelect(props.data)
         }
     }
-    console.log(props.data)
     return (
         <Container>
             <Package>

@@ -88,36 +88,49 @@ const FractionListA: FC<RouteComponentProps<IParams>> = props => {
     }, [entryStore.testProblemDetailData.id])
 
     //对错
-    const handleClick = (text: string, idx: number) => {
-        entryStore.testProblemDetailData.fractionList.map((item, index) => {
-            if (text === '对') {
-                if (index === idx) {
-                    setCurrentFraction(
-                        currentFraction.map((t, i) => {
-                            if (idx === i) {
-                                t = 2
-                                item.fraction = '2'
-                            }
-                            return t
-                        })
-                    )
-                }
-            } else if (text === '错') {
-                if (index === idx) {
-                    setCurrentFraction(
-                        currentFraction.map((t, i) => {
-                            if (idx === i) {
-                                t = 3
-                                item.fraction = '3'
-                            }
-                            return t
-                        })
-                    )
-                }
+    const handleClick = (text: string, index: number) => {
+        if (text === '对') {
+            if (entryStore.testProblemDetailData.fractionList[index].fraction === '2') {
+                entryStore.testProblemDetailData.fractionList[index].fraction = ''
+            } else {
+                entryStore.testProblemDetailData.fractionList[index].fraction = '2'
             }
+        } else if (text === '错') {
+            if (entryStore.testProblemDetailData.fractionList[index].fraction === '3') {
+                entryStore.testProblemDetailData.fractionList[index].fraction = ''
+            } else {
+                entryStore.testProblemDetailData.fractionList[index].fraction = '3'
+            }
+        }
+        // entryStore.testProblemDetailData.fractionList.map((item, index) => {
+        //     if (text === '对') {
+        //         if (index === idx) {
+        //             setCurrentFraction(
+        //                 currentFraction.map((t, i) => {
+        //                     if (idx === i) {
+        //                         t = 2
+        //                         item.fraction = '2'
+        //                     }
+        //                     return t
+        //                 })
+        //             )
+        //         }
+        //     } else if (text === '错') {
+        //         if (index === idx) {
+        //             setCurrentFraction(
+        //                 currentFraction.map((t, i) => {
+        //                     if (idx === i) {
+        //                         t = 3
+        //                         item.fraction = '3'
+        //                     }
+        //                     return t
+        //                 })
+        //             )
+        //         }
+        //     }
 
-            return item
-        })
+        //     return item
+        // })
     }
 
     //录入

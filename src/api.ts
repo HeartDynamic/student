@@ -2,8 +2,8 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 export const instance = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://api.likeyun.net' : '',
-    // baseURL: 'http://192.168.0.105:8080/step',
+    // baseURL: process.env.NODE_ENV === 'production' ? 'https://api.likeyun.net' : '',
+    baseURL: 'http://192.168.0.104:8080/step',
     // baseURL: 'https://api.likeyun.net',
     timeout: 5000,
 })

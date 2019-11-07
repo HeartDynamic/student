@@ -87,7 +87,6 @@ const ACenter: FC<RouteComponentProps> = props => {
     }
 
     return useObserver(() => {
-        console.log(completeStore.testProblemDetailData)
         return (
             <Container>
                 <HeaderWrap>

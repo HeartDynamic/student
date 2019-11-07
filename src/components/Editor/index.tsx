@@ -133,13 +133,13 @@ const MyEditor: FC<IProps> = props => {
             <Editor
                 value={props.value}
                 onChange={props.onChange}
-                onBlur={handleBlur}
+                // onBlur={handleBlur}
                 renderBlock={renderBlock}
                 renderMark={renderMark}
                 renderInline={renderInline}
                 schema={schema}
                 ref={editorRef}
-                onKeyDown={handleKeyDown}
+                // onKeyDown={handleKeyDown}
             />
         </Container>
     )

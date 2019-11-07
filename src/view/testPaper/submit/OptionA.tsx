@@ -29,7 +29,6 @@ const OptionA: FC = () => {
     }
 
     return useObserver(() => {
-        console.log(submitStore.testProblemDetailData.option, 123)
         return (
             <OptionWrap>
                 {submitStore.testProblemDetailData.option.map((item: any, index: number) => (

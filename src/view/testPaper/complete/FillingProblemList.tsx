@@ -2,9 +2,10 @@ import React, { FC, useContext } from 'react'
 import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
-import { IStore } from '../../../store'
+import { Value } from 'slate'
 
-import PlanView from '../common/PlanView'
+import { IStore } from '../../../store'
+import Editor from '../../../components/EditorX'
 import Knowledge from './Knowledge'
 import FractionListB from './FractionListB'
 
@@ -156,7 +157,10 @@ const FillingProblemList: FC = props => {
                             </TagWrap>
 
                             <TopicWrap>
-                                <PlanView data={completeStore.testProblemDetailData.topic} />
+                                <Editor
+                                    value={Value.fromJSON(completeStore.testProblemDetailData.topic)}
+                                    readonly
+                                ></Editor>
                             </TopicWrap>
                         </Topic>
                     </Wrap>
@@ -167,7 +171,7 @@ const FillingProblemList: FC = props => {
                                 <AnswerItem key={index}>
                                     <ItemIndex>{index + 1}</ItemIndex>
                                     <RichTextWrap>
-                                        <PlanView data={item.value} />
+                                        <Editor value={Value.fromJSON(item.value)} readonly></Editor>
                                     </RichTextWrap>
                                 </AnswerItem>
                             ))}
@@ -177,7 +181,10 @@ const FillingProblemList: FC = props => {
                         <SolutionWrap>
                             <SolutionSpan>解析</SolutionSpan>
                             <Solution>
-                                <PlanView data={completeStore.testProblemDetailData.solution} />
+                                <Editor
+                                    value={Value.fromJSON(completeStore.testProblemDetailData.solution)}
+                                    readonly
+                                ></Editor>
                             </Solution>
                         </SolutionWrap>
                     </Wrap>
@@ -186,14 +193,15 @@ const FillingProblemList: FC = props => {
                     <Wrap>
                         <AnswerSpan>我的答案</AnswerSpan>
                         <Answer>
-                            {completeStore.testProblemDetailData.studentAnswer&&completeStore.testProblemDetailData.studentAnswer.map((item: any, index: number) => (
-                                <AnswerItem key={index}>
-                                    <ItemIndex>{index + 1}</ItemIndex>
-                                    <RichTextWrap>
-                                        <PlanView data={item.value} />
-                                    </RichTextWrap>
-                                </AnswerItem>
-                            ))}
+                            {completeStore.testProblemDetailData.studentAnswer &&
+                                completeStore.testProblemDetailData.studentAnswer.map((item: any, index: number) => (
+                                    <AnswerItem key={index}>
+                                        <ItemIndex>{index + 1}</ItemIndex>
+                                        <RichTextWrap>
+                                            <Editor value={Value.fromJSON(item.value)} readonly></Editor>
+                                        </RichTextWrap>
+                                    </AnswerItem>
+                                ))}
                         </Answer>
                     </Wrap>
                 </Package>

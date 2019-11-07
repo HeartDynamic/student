@@ -2,9 +2,10 @@ import React, { FC, useContext } from 'react'
 import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
-import { IStore } from '../../../store'
+import { Value } from 'slate'
 
-import PlanView from '../common/PlanView'
+import { IStore } from '../../../store'
+import Editor from '../../../components/EditorX'
 import Knowledge from './Knowledge'
 import FractionListA from './FractionListA'
 
@@ -158,9 +159,11 @@ const ChoiceProblemList: FC = props => {
                                 <Index>{completeStore.testProblemDetailData.number}</Index>
                                 <Fraction>{completeStore.testProblemDetailData.fraction} 分</Fraction>
                             </TagWrap>
-
                             <TopicWrap>
-                                <PlanView data={completeStore.testProblemDetailData.topic} />
+                                <Editor
+                                    value={Value.fromJSON(completeStore.testProblemDetailData.topic)}
+                                    readonly
+                                ></Editor>
                             </TopicWrap>
                         </Topic>
                     </Wrap>
@@ -170,7 +173,7 @@ const ChoiceProblemList: FC = props => {
                                 <OptionItem key={item.id}>
                                     <ItemIndex>{myMap[index]}</ItemIndex>
                                     <RichTextWrap>
-                                        <PlanView data={item.value} />
+                                        <Editor value={Value.fromJSON(item.value)} readonly></Editor>
                                     </RichTextWrap>
                                 </OptionItem>
                             ))}
@@ -186,7 +189,10 @@ const ChoiceProblemList: FC = props => {
                         <Solution>
                             <Analysis>解析</Analysis>
                             <RichTextWrap>
-                                <PlanView data={completeStore.testProblemDetailData.solution} />
+                                <Editor
+                                    value={Value.fromJSON(completeStore.testProblemDetailData.solution)}
+                                    readonly
+                                ></Editor>
                             </RichTextWrap>
                         </Solution>
                     </Wrap>

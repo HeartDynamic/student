@@ -219,7 +219,6 @@ const EditorX: FC<IProps> = props => {
     // 点击工具栏中block类型的按钮处理
     const onClickBlock = (event: MouseEvent, type: string) => {
         event.preventDefault()
-        console.log(type, 123)
         const editor = ref.current
         const { value } = editor as Editor
         const { document } = value

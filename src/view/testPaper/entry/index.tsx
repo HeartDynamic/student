@@ -27,7 +27,6 @@ interface IParams {
 
 const Answer: FC<RouteComponentProps<IParams>> = props => {
     const { entryStore } = useContext<IStore>(MobXProviderContext)
-    console.log(props, 123)
     useEffect(() => {
         entryStore.getTestProblemEntering({
             id: Number(props.id),
