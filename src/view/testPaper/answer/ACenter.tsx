@@ -3,8 +3,7 @@ import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
 import { RouteComponentProps } from '@reach/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { FaStar } from 'react-icons/fa'
 
 import ProblemWrap from './ProblemWrap'
 import { IStore } from '../../../store'
@@ -187,7 +186,7 @@ const ACenter: FC<RouteComponentProps> = props => {
                 </HeaderWrap>
                 <ButtonWrap>
                     <Button options={starOption} onClick={handleClickMark}>
-                        <FontAwesomeIcon icon={faStar} />
+                        <FaStar></FaStar>
                         <ButtonName>{answerStore.testProblemDetailData.mark ? '取消标记' : '标记该题'}</ButtonName>
                     </Button>
                 </ButtonWrap>

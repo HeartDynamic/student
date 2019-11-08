@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react'
 import styled from '@emotion/styled'
 import { Value } from 'slate'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleDown, faAngleDoubleUp, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FaAngleDoubleDown, FaAngleDoubleUp, FaCheck, FaTimes } from 'react-icons/fa'
 
 import Editor from '../EditorX'
 import HeaderType from './HeaderType'
@@ -171,11 +170,11 @@ const JudgeProblem: FC<Iprops> = props => {
     const [expandArr] = useState([
         {
             name: '展开',
-            icon: faAngleDoubleDown,
+            icon: <FaAngleDoubleDown></FaAngleDoubleDown>,
         },
         {
             name: '收起',
-            icon: faAngleDoubleUp,
+            icon: <FaAngleDoubleUp></FaAngleDoubleUp>,
         },
     ])
 
@@ -227,22 +226,14 @@ const JudgeProblem: FC<Iprops> = props => {
                         <AnswerItem>
                             <ItemName>答案</ItemName>
                             <AnswerRichText>
-                                {props.data.answer === '1' ? (
-                                    <FontAwesomeIcon icon={faCheck} />
-                                ) : (
-                                    <FontAwesomeIcon icon={faTimes} />
-                                )}
+                                {props.data.answer === '1' ? <FaCheck></FaCheck> : <FaTimes></FaTimes>}
                             </AnswerRichText>
                         </AnswerItem>
                         {props.data.studentAnswer && (
                             <AnswerItem>
                                 <ItemName>学生作答</ItemName>
                                 <AnswerRichText>
-                                    {props.data.studentAnswer === '1' ? (
-                                        <FontAwesomeIcon icon={faCheck} />
-                                    ) : (
-                                        <FontAwesomeIcon icon={faTimes} />
-                                    )}
+                                    {props.data.studentAnswer === '1' ? <FaCheck></FaCheck> : <FaTimes></FaTimes>}
                                 </AnswerRichText>
                             </AnswerItem>
                         )}
@@ -258,7 +249,7 @@ const JudgeProblem: FC<Iprops> = props => {
             {props.isExpand && (
                 <Expand onClick={handleClickExpand}>
                     <AngleDouble title={expandArr[currentExpand].name + '答案&解析'}>
-                        <FontAwesomeIcon icon={expandArr[currentExpand].icon}></FontAwesomeIcon>
+                        {expandArr[currentExpand].icon}
                     </AngleDouble>
                 </Expand>
             )}

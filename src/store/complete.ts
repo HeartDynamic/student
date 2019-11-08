@@ -10,6 +10,7 @@ export interface IProblems {
     problemType: number
     number: number
     mark: number
+    isTrue: number
     ifStudentAnswer: number
 }
 

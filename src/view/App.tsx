@@ -12,12 +12,10 @@ const Container = styled(Router)`
     width: 100%;
     height: 100%;
 `
-// import Correction from '../view/correction'
 
 const App: FC = () => {
     return (
         <Container>
-            {/* <Correction path='/correction/:id' /> */}
             <Complete path='/complete/:id' />
             <Entry path='/entry/:id' />
             <Submit path='/submit/:id' />

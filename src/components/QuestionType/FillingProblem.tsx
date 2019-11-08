@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react'
 import styled from '@emotion/styled'
 import { Value } from 'slate'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
+import { FaAngleDoubleDown, FaAngleDoubleUp } from 'react-icons/fa'
 
 import Editor from '../EditorX'
 import HeaderType from './HeaderType'
@@ -181,11 +180,11 @@ const FillingProblem: FC<Iprops> = props => {
     const [expandArr] = useState([
         {
             name: '展开',
-            icon: faAngleDoubleDown,
+            icon: <FaAngleDoubleDown></FaAngleDoubleDown>,
         },
         {
             name: '收起',
-            icon: faAngleDoubleUp,
+            icon: <FaAngleDoubleUp></FaAngleDoubleUp>,
         },
     ])
 
@@ -276,7 +275,7 @@ const FillingProblem: FC<Iprops> = props => {
             {props.isExpand && (
                 <Expand onClick={handleClickExpand}>
                     <AngleDouble title={expandArr[currentExpand].name + '答案&解析'}>
-                        <FontAwesomeIcon icon={expandArr[currentExpand].icon}></FontAwesomeIcon>
+                        {expandArr[currentExpand].icon}
                     </AngleDouble>
                 </Expand>
             )}

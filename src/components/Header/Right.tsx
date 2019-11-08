@@ -1,9 +1,8 @@
 import React, { useState, useRef, FC, useContext } from 'react'
 import styled from '@emotion/styled'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
+import { FaUserTie } from 'react-icons/fa'
 
 import { IStore } from '../../store'
 
@@ -64,7 +63,7 @@ const Right: FC = () => {
         <Container>
             <MySubjectName>{userStore.userInfo.realName}</MySubjectName>
             <Avatar onMouseDown={handleClickInfoMenu} ref={tagRef}>
-                <FontAwesomeIcon icon={faUserTie} />
+                <FaUserTie />
             </Avatar>
             {isInfoMenu && <Menu close={handleCloseMenu} />}
         </Container>

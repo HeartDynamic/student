@@ -3,8 +3,7 @@ import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
 import { navigate } from '@reach/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import { FaSignInAlt } from 'react-icons/fa'
 
 import { IStore } from '../../store'
 import { IAllTestList } from '../../store/main'
@@ -136,7 +135,7 @@ const Pending: FC = props => {
                             <MysubjectName color={item.color}>{item.subjectName}</MysubjectName>
                             <MyInfoRight color={item.color}>
                                 <MyTestVolumes>{item.testVolumesName}</MyTestVolumes>
-                                <FontAwesomeIcon icon={faSignInAlt} />
+                                <FaSignInAlt></FaSignInAlt>
                             </MyInfoRight>
                         </MyLi>
                     ))}

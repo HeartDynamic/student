@@ -3,9 +3,8 @@ import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
 import { RouteComponentProps, navigate } from '@reach/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faReply, faTv, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { Value } from 'slate'
+import { FaReply, FaQuoteLeft, FaPaperPlane } from 'react-icons/fa'
 
 import { IStore } from '../../../store'
 import Editor from '../../../components/EditorX'
@@ -123,14 +122,14 @@ const Back: FC<RouteComponentProps> = props => {
             <Left>
                 <ButtonWrap>
                     <Button options={buttonOption} onClick={handleClickLink}>
-                        <FontAwesomeIcon icon={faReply} />
+                        <FaReply></FaReply>
                         <RutemName>返回首页</RutemName>
                     </Button>
                 </ButtonWrap>
                 {answerStore.testProblemData.preparation.id && (
                     <ButtonWrap>
                         <Button options={starOption} onClick={handleClickReady}>
-                            <FontAwesomeIcon icon={faTv} />
+                            <FaQuoteLeft></FaQuoteLeft>
                             <ButtonName>课前准备</ButtonName>
                         </Button>
                     </ButtonWrap>
@@ -138,7 +137,7 @@ const Back: FC<RouteComponentProps> = props => {
             </Left>
             <Right>
                 <Button options={carryOption} onClick={handleClickSave}>
-                    <FontAwesomeIcon icon={faPaperPlane} />
+                    <FaPaperPlane></FaPaperPlane>
                     <ButtonName>交卷</ButtonName>
                 </Button>
             </Right>

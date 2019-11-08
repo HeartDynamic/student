@@ -1,8 +1,7 @@
 import React, { FC, useEffect, useState, useRef, MouseEvent } from 'react'
 import styled from '@emotion/styled'
 import useOnClickOutside from 'use-onclickoutside'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FaTimes } from 'react-icons/fa'
 
 interface IOptions {
     width?: string
@@ -115,7 +114,7 @@ const Dialog: FC<IDialog> = props => {
                 <MyHeader borderBottom={props.options.borderBottom}>
                     <MyTitle>{props.title}</MyTitle>
                     <FontWrap onClick={handleClickClose2}>
-                        <FontAwesomeIcon icon={faTimes} title='关闭' />
+                        <FaTimes title='关闭' />
                     </FontWrap>
                 </MyHeader>
                 <MySection {...props.options}>{props.children}</MySection>

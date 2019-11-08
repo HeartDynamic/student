@@ -1,6 +1,6 @@
-import React, { FC, useState, useRef, MouseEvent } from 'react'
+import React, { FC, useState, useRef, KeyboardEvent, MouseEvent } from 'react'
 import styled from '@emotion/styled'
-import { Editor, RenderBlockProps, RenderMarkProps, RenderInlineProps, OnChangeParam } from 'slate-react'
+import { Editor, RenderBlockProps, RenderMarkProps, RenderInlineProps, OnChangeParam, EventHook } from 'slate-react'
 import { Value, Editor as SlateEditor, SchemaProperties, Block } from 'slate'
 import { isKeyHotkey } from 'is-hotkey'
 
@@ -49,11 +49,13 @@ const ShowVacancyButton = styled.button`
         background-color: #418ccc;
     }
 `
-const MyA = styled.a`
+const Space = styled.span`
     display: inline-block;
+    width: 20px;
     height: 20px;
     line-height: 20px;
-    color: #3a93df;
+    color: #fff;
+    background-color: #3a93df;
     text-align: center;
     margin: 0 8px;
 `
@@ -75,6 +77,9 @@ const schema: SchemaProperties = {
             isVoid: true,
         },
         formula: {
+            isVoid: true,
+        },
+        space: {
             isVoid: true,
         },
     },
@@ -103,8 +108,7 @@ const EditorX: FC<IProps> = props => {
         setValue(value)
         props.onChange && props.onChange(value)
     }
-
-    const onKeyDown = (event: any, editor: SlateEditor, next: () => any) => {
+    const onKeyDown: EventHook<KeyboardEvent<Element>> = (event, editor, next) => {
         let mark
 
         if (isBoldHotkey(event as any)) {
@@ -194,8 +198,8 @@ const EditorX: FC<IProps> = props => {
                     ></Formula>
                 )
             }
-            case 'link': {
-                return <MyA {...inlineProps} href={inlineProps.node.data.get('href')} />
+            case 'space': {
+                return <Space {...inlineProps}></Space>
             }
             default:
                 return next()
@@ -208,26 +212,13 @@ const EditorX: FC<IProps> = props => {
         ref.current!.toggleMark(type)
     }
 
-    const wrapLink = (editor: SlateEditor, href: string) => {
-        editor.wrapInline({
-            type: 'link',
-            data: { href: '' },
-        })
-
-        editor.moveToEnd()
-    }
     // 点击工具栏中block类型的按钮处理
     const onClickBlock = (event: MouseEvent, type: string) => {
         event.preventDefault()
         const editor = ref.current
         const { value } = editor as Editor
         const { document } = value
-        if (type === 'link') {
-            editor!
-                .insertText('_________')
-                .moveFocusBackward('_________'.length)
-                .command(wrapLink)
-        } else if (type !== 'bulleted-list' && type !== 'numbered-list') {
+        if (type !== 'bulleted-list' && type !== 'numbered-list') {
             const isActive = hasBlock(type)
             const isList = hasBlock('list-item')
 
@@ -261,6 +252,7 @@ const EditorX: FC<IProps> = props => {
     // 点击工具栏中inline类型的按钮处理
     const onClickInline = (event: MouseEvent, type: string) => {
         event.preventDefault()
+        event.stopPropagation()
         const editor = ref.current
         if (type === 'image') {
             document.getElementById('editor-image-input')!.click()
@@ -268,6 +260,10 @@ const EditorX: FC<IProps> = props => {
             editor!.insertInline({
                 type: 'formula',
                 data: { latex: 'f(x)' },
+            })
+        } else if (type === 'space') {
+            editor!.insertInline({
+                type: 'space',
             })
         }
     }
@@ -286,7 +282,7 @@ const EditorX: FC<IProps> = props => {
                 <Blank></Blank>
             ) : null}
             {props.showVacancy && (
-                <ShowVacancyButton onClick={event => onClickBlock(event, 'link')}>插入填空</ShowVacancyButton>
+                <ShowVacancyButton onMouseDown={event => onClickInline(event, 'space')}>插入填空</ShowVacancyButton>
             )}
             {props.readonly ? (
                 <Editor

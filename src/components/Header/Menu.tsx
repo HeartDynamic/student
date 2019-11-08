@@ -2,9 +2,8 @@ import React, { useRef, FC, useContext } from 'react'
 import styled from '@emotion/styled'
 import { Link } from '@reach/router'
 import useOnClickOutside from 'use-onclickoutside'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 import { MobXProviderContext } from 'mobx-react'
+import { FaUserTie } from 'react-icons/fa'
 
 import { IStore } from '../../store'
 
@@ -145,7 +144,7 @@ const Menu: FC<IProps> = props => {
             <TriangleShadow />
             <Top>
                 <Avatar>
-                    <FontAwesomeIcon icon={faUserTie} />
+                    <FaUserTie />
                 </Avatar>
                 <InfoBox>
                     <Realname>{userStore.userInfo.realName}</Realname>

@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react'
 import styled from '@emotion/styled'
 import { Link } from '@reach/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import { FaSignInAlt } from 'react-icons/fa'
 
 const Container = styled.div`
     background-color: #fff;
@@ -184,7 +183,7 @@ const ClassCourse: FC<IProps> = props => {
                         <Name>{typeArr[index]}</Name>
                         <Statu setColor={setStyle.color}>{setName}</Statu>
                         <Icon bgColor={setStyle.bgColor} shadow={setStyle.shadow}>
-                            <FontAwesomeIcon icon={faSignInAlt}></FontAwesomeIcon>
+                            <FaSignInAlt></FaSignInAlt>
                         </Icon>
                     </Link>
                 </Li>

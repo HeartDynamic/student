@@ -3,10 +3,9 @@ import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
 import { RouteComponentProps } from '@reach/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-import { IStore } from '../../../store'
+import { FaPaperPlane } from 'react-icons/fa'
 
+import { IStore } from '../../../store'
 import Button from '../../../components/Button'
 
 const Container = styled.div`
@@ -130,7 +129,7 @@ const FractionListC: FC<RouteComponentProps<IParams>> = props => {
                     </TestPaperWrap>
                     <FunctWrap>
                         <Button options={paperPlaneOption} onClick={handleClickNext}>
-                            <FontAwesomeIcon icon={faPaperPlane} />
+                            <FaPaperPlane></FaPaperPlane>
                             <ButtonName>下一题</ButtonName>
                         </Button>
                     </FunctWrap>

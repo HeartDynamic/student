@@ -3,8 +3,7 @@ import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
 import { navigate } from '@reach/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDotCircle, faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import { FaDotCircle, FaSignInAlt } from 'react-icons/fa'
 
 import { IStore } from '../../store'
 import { IAllTestList } from '../../store/main'
@@ -146,7 +145,7 @@ const DynamicList: FC = props => {
                         <MyInfoWrap>
                             <MyInfoLeft>
                                 <MyFontWrap stypeOption={{ color: item.color, shadow: item.shadow }}>
-                                    <FontAwesomeIcon icon={faDotCircle} />
+                                    <FaDotCircle></FaDotCircle>
                                     <MyTestName>{item.testName}</MyTestName>
                                 </MyFontWrap>
                                 <MySubjectNameWrap>
@@ -164,7 +163,7 @@ const DynamicList: FC = props => {
                                 title={'进入' + item.testName}
                                 onClick={() => handleClickLink(item)}
                             >
-                                <FontAwesomeIcon icon={faSignInAlt} />
+                                <FaSignInAlt></FaSignInAlt>
                             </MyInfoRight>
                         </MyInfoWrap>
                         {mainStore.allTestListData.data.length !== index + 1 && <Myvertical />}

@@ -22,6 +22,7 @@ interface IProblems {
     ifEntering: number
     problemType: number
     number: number
+    isTrue: number
     mark: number
     ifStudentAnswer: number
     index: number
@@ -91,7 +92,7 @@ const ProblemWrap: FC<RouteComponentProps> = props => {
                                       setType={{
                                           mark: item.mark,
                                           isColor: item.number === completeStore.testProblemDetailData.number,
-                                          studentAnswer: completeStore.testProblemDetailData.isTrue,
+                                          studentAnswer: item.isTrue,
                                       }}
                                       onClick={() => handleClickTypeNumber({ ...item, index })}
                                   >

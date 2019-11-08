@@ -3,8 +3,7 @@ import styled from '@emotion/styled'
 import { useObserver } from 'mobx-react-lite'
 import { MobXProviderContext } from 'mobx-react'
 import { RouteComponentProps, navigate } from '@reach/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faReply } from '@fortawesome/free-solid-svg-icons'
+import { FaReply } from 'react-icons/fa'
 
 import { IStore } from '../../../store'
 import frequently from '../../../utils/frequently'
@@ -153,7 +152,7 @@ const ALeft: FC<RouteComponentProps> = props => {
         <Container>
             <ButtonWrap>
                 <Button options={buttonOption} onClick={handleClickLink}>
-                    <FontAwesomeIcon icon={faReply} />
+                    <FaReply></FaReply>
                     <RutemName>返回首页</RutemName>
                 </Button>
             </ButtonWrap>

@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react'
 import styled from '@emotion/styled'
 import { navigate } from '@reach/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { FaEdit } from 'react-icons/fa'
 
 import Knowledge from '../Knowledge'
 import Button from '../Button'
@@ -87,7 +86,7 @@ const HeaderType: FC<Iprops> = props => {
             </KnowledgeWrap>
             {props.data.showEditPick === 1 ? (
                 <FontWrap title='点击编辑' onClick={handleClickLink}>
-                    <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+                    <FaEdit></FaEdit>
                 </FontWrap>
             ) : props.data.showEditPick === 2 ? (
                 <Button options={buttonOption1} title='选择该题目' onClick={haneleClickSelect}>

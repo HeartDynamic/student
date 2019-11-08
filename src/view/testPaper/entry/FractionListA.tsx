@@ -99,13 +99,14 @@ const FractionListA: FC<RouteComponentProps<IParams>> = props => {
     //保存该题录入
     const handleClickNext = () => {
         let fraction = 0
+        let length = entryStore.testProblemDetailData.fractionList.length
         let Total = 0
-        currentFraction.map(item => {
-            if (item === 2) {
+        entryStore.testProblemDetailData.fractionList.map(item => {
+            if (item.fraction === '2') {
                 fraction += 1
             }
-            return item
         })
+
         Total = Number(
             (entryStore.testProblemDetailData.fraction / entryStore.testProblemDetailData.fractionList.length).toFixed(
                 1

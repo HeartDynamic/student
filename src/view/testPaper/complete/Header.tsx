@@ -3,8 +3,7 @@ import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
 import { Link, navigate } from '@reach/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faReply } from '@fortawesome/free-solid-svg-icons'
+import { FaReply } from 'react-icons/fa'
 
 import { IStore } from '../../../store'
 import Circle from '../../../components/Echarts/Circle'
@@ -164,7 +163,7 @@ const Header: FC = props => {
                     <FeaturesWrap>
                         <ButtonWrap>
                             <Button options={buttonOption} onClick={handleClickLink}>
-                                <FontAwesomeIcon icon={faReply} />
+                                <FaReply></FaReply>
                                 <RutemName>返回首页</RutemName>
                             </Button>
                         </ButtonWrap>

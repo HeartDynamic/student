@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle, faInfo, faCheckCircle, faExclamationCircle, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FaTimesCircle, FaInfo, FaCheckCircle, FaExclamationCircle, FaSpinner } from 'react-icons/fa'
 
 const NoticeWrap = styled.div`
     display: flex;
@@ -31,18 +30,16 @@ const Span = styled.span`
 const Notice = props => {
     const { type, content } = props
     const icons = {
-        info: { font: faInfo, color: '#1890ff' },
-        success: { font: faCheckCircle, color: '#52c41a' },
-        warning: { font: faExclamationCircle, color: '#faad14' },
-        error: { font: faTimesCircle, color: '#f74a53' },
-        loading: { font: faSpinner, color: '#1890ff' },
+        info: { font: <FaInfo></FaInfo>, color: '#1890ff' },
+        success: { font: <FaCheckCircle></FaCheckCircle>, color: '#52c41a' },
+        warning: { font: <FaExclamationCircle></FaExclamationCircle>, color: '#faad14' },
+        error: { font: <FaTimesCircle></FaTimesCircle>, color: '#f74a53' },
+        loading: { font: <FaSpinner></FaSpinner>, color: '#1890ff' },
     }
 
     return (
         <NoticeWrap color={icons[type].color}>
-            <Font>
-                <FontAwesomeIcon icon={icons[type].font}></FontAwesomeIcon>
-            </Font>
+            <Font>{icons[type].font}</Font>
             <Span>{content}</Span>
         </NoticeWrap>
     )

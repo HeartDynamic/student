@@ -42,8 +42,8 @@ const Uploader: FC<IProps> = props => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data, insertImage, props)
                 props.editor!.command(insertImage, `https://img2.heartdynamic.cn/${data.key}`)
-                console.log(data)
             })
     }
     return (

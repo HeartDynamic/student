@@ -3,8 +3,7 @@ import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { range } from 'ramda'
 import { useObserver } from 'mobx-react-lite'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FaSpinner } from 'react-icons/fa'
 
 import WeekSelector from './WeekSelector'
 import ClassCourse from './ClassCourse'
@@ -242,7 +241,7 @@ const ClassTable: FC = () => {
                                 </YAxis>
                                 {classTableStore.gettingCourses || !classTableStore.coursesReady ? (
                                     <Loading>
-                                        <FontAwesomeIcon icon={faSpinner} spin />
+                                        <FaSpinner></FaSpinner>
                                     </Loading>
                                 ) : (
                                     <TableItems
