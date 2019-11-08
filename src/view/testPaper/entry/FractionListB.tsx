@@ -7,18 +7,14 @@ import { IStore } from '../../../store'
 
 import Button from '../../../components/Button'
 
-const Container = styled.div``
-const Fraction = styled.div`
-    font-size: 24px;
-    font-family: PingFangSC;
-    font-weight: 300;
-    color: rgba(51, 51, 51, 1);
-    margin-top: 30px;
+const Container = styled.div`
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 20px;
 `
 
 const Ul = styled.ul`
-    width: 100%;
+    flex: 1;
     box-sizing: border-box;
     display: flex;
 `
@@ -33,28 +29,23 @@ const Question = styled.div`
 `
 
 const Input = styled.input`
-    width: 92px;
-    height: 50px;
+    width: 60px;
+    height: 30px;
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0px 3px 6px 0px rgba(78, 140, 247, 0.14);
-    border-radius: 10px;
+    border-radius: 4px;
     padding: 0 6px;
     margin-top: 20px;
     outline: none;
     border: none;
-    font-size: 24px;
+    font-size: 16px;
     font-family: PingFangSC;
     font-weight: 500;
     color: rgba(237, 80, 131, 1);
     text-align: center;
 `
 
-const ButtonWrap = styled.div`
-    height: 160px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+const ButtonWrap = styled.div``
 interface IParams {
     testId: string
 }
@@ -66,7 +57,6 @@ const FractionListB: FC<RouteComponentProps<IParams>> = props => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>, i: number) => {
         let num = 0
-
         entryStore.testProblemDetailData.fractionList.map((item, index) => {
             if (index === i) {
                 item.fraction = e.target.value
@@ -79,6 +69,7 @@ const FractionListB: FC<RouteComponentProps<IParams>> = props => {
         setFraction(num)
         setCurrentFraction(Number(e.target.value))
     }
+
     const handleBlur = (i: number) => {
         let num = 0
         entryStore.testProblemDetailData.fractionList.map((item, index) => {
@@ -99,7 +90,11 @@ const FractionListB: FC<RouteComponentProps<IParams>> = props => {
             return item
         })
     }
+
     const showFraction = () => {
+        if (entryStore.testProblemDetailData.fraction - fraction < 0) {
+            return '已超出' + (entryStore.testProblemDetailData.fraction - fraction) + '分'
+        }
         return '还能输入' + (entryStore.testProblemDetailData.fraction - fraction) + '分'
     }
 
@@ -117,8 +112,7 @@ const FractionListB: FC<RouteComponentProps<IParams>> = props => {
     }
 
     const buttonOption = {
-        width: '200px',
-        height: '50px',
+        height: '36px',
         bgColor: '#E95C53',
         size: '16px',
         family: 'PingFangSC',
@@ -129,7 +123,6 @@ const FractionListB: FC<RouteComponentProps<IParams>> = props => {
     return useObserver(() => {
         return (
             <Container>
-                <Fraction>总分 {entryStore.testProblemDetailData.fraction}</Fraction>
                 <Ul>
                     {entryStore.testProblemDetailData.fractionList.map((item: any, index: number) => (
                         <Li key={index} title={showFraction()}>
@@ -145,7 +138,7 @@ const FractionListB: FC<RouteComponentProps<IParams>> = props => {
                 </Ul>
                 <ButtonWrap>
                     <Button options={buttonOption} onClick={handleClickNext}>
-                        录入
+                        保存该题录入
                     </Button>
                 </ButtonWrap>
             </Container>

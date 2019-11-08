@@ -11,12 +11,37 @@ import ALeft from './ALeft'
 import ACenter from './ACenter'
 
 const Container = styled.div`
-    width: 1320px;
+    box-sizing: border-box;
     height: 100%;
+    width: 100%;
+    padding-right: 5px;
+`
+const Wrap = styled.div`
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    &::-webkit-scrollbar-button {
+        background-color: #fff;
+    }
+    &::-webkit-scrollbar {
+        background-color: #fff;
+        width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(66, 88, 99, 0.4);
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: #ddd;
+    }
+`
+const Package = styled.div`
     box-sizing: border-box;
     display: flex;
-    margin: 0px auto;
-    padding-top: 20px;
+    width: 1260px;
+    margin: 20px auto 0;
 `
 
 interface IParams {
@@ -36,8 +61,12 @@ const Answer: FC<RouteComponentProps<IParams>> = props => {
     }, [props.id])
     return (
         <Container>
-            <ALeft />
-            <ACenter />
+            <Wrap>
+                <Package>
+                    <ALeft></ALeft>
+                    <ACenter></ACenter>
+                </Package>
+            </Wrap>
         </Container>
     )
 }

@@ -12,16 +12,16 @@ import Button from '../../../components/Button'
 
 const Container = styled.div`
     box-sizing: border-box;
-    width: 1320px;
+    width: 100%;
     height: 270px;
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0px 2px 4px 0px rgba(31, 122, 171, 0.2);
-    border-radius: 6px;
+    border-radius: 4px;
     border: 3px solid rgba(255, 255, 255, 1);
-    padding: 0 30px;
+    padding: 0 20px;
 `
 const TitleWrap = styled.div`
-    margin: 30px 0 24px 0;
+    margin: 20px 0 20px 0;
 `
 const Title = styled.span`
     display: inline-block;

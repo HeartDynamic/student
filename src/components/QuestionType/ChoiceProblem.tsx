@@ -102,10 +102,11 @@ const AnswerItem = styled.div`
     border-radius: 4px;
 `
 const AnswerWrap = styled.div<{ setMargin: boolean }>`
+    width: 100%;
     display: flex;
     margin-top: 20px;
-    & ${AnswerItem}:first-of-type {
-        margin-right: ${props => (props.setMargin ? '60px' : '')};
+    ${AnswerItem}:last-of-type {
+        margin-left: ${props => (props.setMargin || props.setMargin === null ? '60px' : '')};
     }
 `
 

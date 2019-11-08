@@ -83,7 +83,7 @@ const Circle: FC<IProps> = props => {
         }
         myChart.setOption(option)
         // eslint-disable-next-line
-    }, [])
+    }, [props.data.circleId, props.data.accuracy])
     return <Container id={props.data.circleId}></Container>
 }
 

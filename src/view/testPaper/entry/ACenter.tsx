@@ -6,7 +6,15 @@ import { IStore } from '../../../store'
 
 import { RouteComponentProps } from '@reach/router'
 import ProblemWrap from './ProblemWrap'
-import ReadEdit from './ReadEdit'
+import ChoiceProblem from '../../../components/QuestionType/ChoiceProblem'
+import JudgeProblem from '../../../components/QuestionType/JudgeProblem'
+import FillingProblem from '../../../components/QuestionType/FillingProblem'
+import ShortAnswerProblem from '../../../components/QuestionType/ShortAnswerProblem'
+import Fraction from '../common/Fraction'
+import FractionListA from './FractionListA'
+import OptionA from '../common/OptionA'
+import FractionListB from './FractionListB'
+import OptionB from '../common/OptionB'
 
 interface ITypeArr {
     name: string
@@ -18,15 +26,6 @@ interface IColor {
     isColor: boolean
 }
 
-export interface IProblems {
-    id: number
-    problemType: number
-    number: number
-    mark: number
-    studentAnswer: number
-    index: number
-}
-
 const Container = styled.div`
     width: 100%;
     height: 100%;
@@ -36,13 +35,28 @@ const HeaderWrap = styled.div`
     width: 100%;
     display: flex;
 `
+const Wrap = styled.div`
+    display: flex;
+`
+const Package = styled.div`
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 2px 4px 0px rgba(31, 122, 171, 0.2);
+    border-radius: 4px;
+    border: 3px solid rgba(255, 255, 255, 1);
+`
+const OptionWrap = styled.div`
+    margin-left: 20px;
+`
 const TypeWrap = styled.div`
     flex: 1;
     box-sizing: border-box;
-    padding: 24px;
+    padding: 20px;
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0px 2px 7px 0px rgba(232, 91, 82, 0.15);
-    border-radius: 10px;
+    border-radius: 4px;
 `
 const TypeName = styled.span<IColor>`
     display: inline-block;
@@ -81,39 +95,7 @@ const ACenter: FC<RouteComponentProps> = props => {
             id: (entryStore.testProblemData as any)[entryStore.currentProblemDetailData.type][0].id,
             testId: entryStore.testProblemData.id,
         })
-
-        // entryStore.setTestProblemDetail({
-        //     testId: entryStore.testProblemData.id,
-        //     number: entryStore.currentProblemDetailData.number,
-        //     type: data.typeName,
-        // })
     }
-
-    //下一题
-    // const handleClickNext = () => {
-    // entryStore.handleClickNext()
-    // props.history.push({
-    //     pathname: `${props.match.url}/${entryStore.currentProblemDetailData.id}`,
-    //     state: {
-    //         key: entryStore.currentProblemDetailData.key,
-    //         courseId: entryStore.currentProblemDetailData.courseId,
-    //     },
-    // })
-    // }
-
-    // const paperPlaneOption = {
-    //     width: '150px',
-    //     height: '50px',
-    //     size: '18px',
-    //     family: 'PingFangSC-Medium',
-    //     weight: '500',
-    //     bgColor: '#fff',
-    //     color: '#3f8cea',
-    //     border: '2px solid #fff',
-    //     shadow: '0px 2px 4px 0px rgba(13,109,177,0.25)',
-    //     HColor: '#fff',
-    //     HbgColor: '#3f8cea',
-    // }
 
     return useObserver(() => {
         return (
@@ -131,14 +113,88 @@ const ACenter: FC<RouteComponentProps> = props => {
                         ))}
                         <ProblemWrap />
                     </TypeWrap>
-                    {/* <FunctWrap>
-                        <Button options={paperPlaneOption} onClick={handleClickNext}>
-                            <FontAwesomeIcon icon={faPaperPlane} />
-                            <ButtonName>下一题</ButtonName>
-                        </Button>
-                    </FunctWrap> */}
                 </HeaderWrap>
-                <ReadEdit data={entryStore.testProblemDetailData}></ReadEdit>
+                {(entryStore.testProblemDetailData.problemType === 1 ||
+                    entryStore.testProblemDetailData.problemType === 2) && (
+                    <Package>
+                        <Fraction
+                            data={{
+                                getFraction: entryStore.testProblemDetailData.getFraction,
+                                fraction: entryStore.testProblemDetailData.fraction,
+                            }}
+                        ></Fraction>
+                        <Wrap>
+                            <ChoiceProblem
+                                data={{
+                                    ...entryStore.testProblemDetailData,
+                                    type: entryStore.testProblemDetailData.problemType,
+                                }}
+                                isExpand={true}
+                            />
+                            <OptionWrap>
+                                <OptionA
+                                    data={{
+                                        problemType: entryStore.testProblemDetailData.problemType,
+                                        answer: entryStore.testProblemDetailData.answer,
+                                        studentAnswer: entryStore.testProblemDetailData.studentAnswer,
+                                        option: entryStore.testProblemDetailData.option,
+                                    }}
+                                ></OptionA>
+                            </OptionWrap>
+                        </Wrap>
+                    </Package>
+                )}
+                {entryStore.testProblemDetailData.problemType === 3 && (
+                    <Package>
+                        <Fraction
+                            data={{
+                                getFraction: entryStore.testProblemDetailData.getFraction,
+                                fraction: entryStore.testProblemDetailData.fraction,
+                            }}
+                        ></Fraction>
+                        <Wrap>
+                            <JudgeProblem
+                                data={{
+                                    ...entryStore.testProblemDetailData,
+                                    type: entryStore.testProblemDetailData.problemType,
+                                }}
+                                isExpand={true}
+                            />
+                            <OptionWrap>
+                                <OptionB
+                                    data={{
+                                        answer: entryStore.testProblemDetailData.answer,
+                                        studentAnswer: entryStore.testProblemDetailData.studentAnswer,
+                                    }}
+                                ></OptionB>
+                            </OptionWrap>
+                        </Wrap>
+                    </Package>
+                )}
+                {entryStore.testProblemDetailData.problemType === 4 && (
+                    <Package>
+                        <FractionListA></FractionListA>
+                        <FillingProblem
+                            data={{
+                                ...entryStore.testProblemDetailData,
+                                type: entryStore.testProblemDetailData.problemType,
+                            }}
+                            isExpand={true}
+                        />
+                    </Package>
+                )}
+                {entryStore.testProblemDetailData.problemType === 5 && (
+                    <Package>
+                        <FractionListB></FractionListB>
+                        <ShortAnswerProblem
+                            data={{
+                                ...entryStore.testProblemDetailData,
+                                type: entryStore.testProblemDetailData.problemType,
+                            }}
+                            isExpand={true}
+                        />
+                    </Package>
+                )}
             </Container>
         )
     })

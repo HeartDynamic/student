@@ -11,20 +11,16 @@ import Circle2 from '../common/Circle2.png'
 import Circle3 from '../common/Circle3.png'
 import Circle4 from '../common/Circle4.png'
 
-const Container = styled.div``
-const Fraction = styled.div`
-    font-size: 24px;
-    font-family: PingFangSC;
-    font-weight: 300;
-    color: rgba(51, 51, 51, 1);
-    margin-top: 30px;
+const Container = styled.div`
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 20px;
 `
 
 const Ul = styled.ul`
-    width: 100%;
     box-sizing: border-box;
     display: flex;
+    flex: 1;
 `
 const Li = styled.li`
     margin-right: 30px;
@@ -66,12 +62,8 @@ const BgCircle1 = styled.div<{ bgImage: string }>`
     border-radius: 50%;
 `
 
-const ButtonWrap = styled.div`
-    height: 160px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+const ButtonWrap = styled.div``
+
 interface IParams {
     testId: string
 }
@@ -102,38 +94,9 @@ const FractionListA: FC<RouteComponentProps<IParams>> = props => {
                 entryStore.testProblemDetailData.fractionList[index].fraction = '3'
             }
         }
-        // entryStore.testProblemDetailData.fractionList.map((item, index) => {
-        //     if (text === '对') {
-        //         if (index === idx) {
-        //             setCurrentFraction(
-        //                 currentFraction.map((t, i) => {
-        //                     if (idx === i) {
-        //                         t = 2
-        //                         item.fraction = '2'
-        //                     }
-        //                     return t
-        //                 })
-        //             )
-        //         }
-        //     } else if (text === '错') {
-        //         if (index === idx) {
-        //             setCurrentFraction(
-        //                 currentFraction.map((t, i) => {
-        //                     if (idx === i) {
-        //                         t = 3
-        //                         item.fraction = '3'
-        //                     }
-        //                     return t
-        //                 })
-        //             )
-        //         }
-        //     }
-
-        //     return item
-        // })
     }
 
-    //录入
+    //保存该题录入
     const handleClickNext = () => {
         let fraction = 0
         let Total = 0
@@ -154,14 +117,13 @@ const FractionListA: FC<RouteComponentProps<IParams>> = props => {
             studentTestId: entryStore.testProblemData.id,
             getFraction: Math.ceil(Total * fraction),
             fractionList: JSON.stringify(entryStore.testProblemDetailData.fractionList),
-            isTrue: entryStore.testProblemDetailData.fractionList.length === fraction ? 1 : 0,
+            isTrue: entryStore.testProblemDetailData.fractionList.every(item => item.fraction === '2') ? 1 : 0,
         }
         entryStore.getTestsEntering(data)
     }
 
     const buttonOption = {
-        width: '200px',
-        height: '50px',
+        height: '36px',
         bgColor: '#E95C53',
         size: '16px',
         family: 'PingFangSC',
@@ -172,7 +134,6 @@ const FractionListA: FC<RouteComponentProps<IParams>> = props => {
     return useObserver(() => {
         return (
             <Container>
-                <Fraction>总分 {entryStore.testProblemDetailData.fraction}</Fraction>
                 <Ul>
                     {entryStore.testProblemDetailData.fractionList.map((item: any, index: number) => (
                         <Li key={index}>
@@ -194,7 +155,7 @@ const FractionListA: FC<RouteComponentProps<IParams>> = props => {
                 </Ul>
                 <ButtonWrap>
                     <Button options={buttonOption} onClick={handleClickNext}>
-                        录入
+                        保存该题录入
                     </Button>
                 </ButtonWrap>
             </Container>

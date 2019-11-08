@@ -10,6 +10,11 @@ import ChoiceProblem from '../../../components/QuestionType/ChoiceProblem'
 import JudgeProblem from '../../../components/QuestionType/JudgeProblem'
 import FillingProblem from '../../../components/QuestionType/FillingProblem'
 import ShortAnswerProblem from '../../../components/QuestionType/ShortAnswerProblem'
+import Fraction from '../common/Fraction'
+import FractionListA from './FractionListA'
+import OptionA from '../common/OptionA'
+import FractionListB from './FractionListB'
+import OptionB from '../common/OptionB'
 
 interface ITypeArr {
     name: string
@@ -33,19 +38,35 @@ export interface IProblems {
 const Container = styled.div`
     width: 100%;
     margin-top: 20px;
+    margin-bottom: 20px;
 `
 
 const HeaderWrap = styled.div`
     width: 100%;
     display: flex;
 `
+const Wrap = styled.div`
+    display: flex;
+`
+const Package = styled.div`
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 2px 4px 0px rgba(31, 122, 171, 0.2);
+    border-radius: 4px;
+    border: 3px solid rgba(255, 255, 255, 1);
+`
+const OptionWrap = styled.div`
+    margin-left: 20px;
+`
 const TypeWrap = styled.div`
     flex: 1;
     box-sizing: border-box;
-    padding: 24px;
+    padding: 20px;
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0px 2px 7px 0px rgba(232, 91, 82, 0.15);
-    border-radius: 10px;
+    border-radius: 4px;
 `
 const TypeName = styled.span<IColor>`
     display: inline-block;
@@ -103,50 +124,99 @@ const ACenter: FC<RouteComponentProps> = props => {
                         <ProblemWrap />
                     </TypeWrap>
                 </HeaderWrap>
-                {completeStore.testProblemDetailData.problemType === 1 ||
-                completeStore.testProblemDetailData.problemType === 2 ? (
-                    <ChoiceProblem
-                        data={{
-                            ...completeStore.testProblemDetailData,
-                            loreList: completeStore.testProblemDetailData.loreDTOList,
-                            type: completeStore.testProblemDetailData.problemType,
-                        }}
-                        isExpand={true}
-                    />
-                ) : null}
-                {completeStore.testProblemDetailData.problemType === 3 ? (
-                    <JudgeProblem
-                        data={{
-                            ...completeStore.testProblemDetailData,
-                            loreList: completeStore.testProblemDetailData.loreDTOList,
-                            type: completeStore.testProblemDetailData.problemType,
-                        }}
-                        isExpand={true}
-                    />
-                ) : null}
-                {completeStore.testProblemDetailData.problemType === 4 ? (
-                    <FillingProblem
-                        data={{
-                            ...completeStore.testProblemDetailData,
-                            loreList: completeStore.testProblemDetailData.loreDTOList,
-                            type: completeStore.testProblemDetailData.problemType,
-                        }}
-                        isExpand={true}
-                    />
-                ) : null}
-                {completeStore.testProblemDetailData.problemType === 5 ? (
-                    <ShortAnswerProblem
-                        data={{
-                            ...completeStore.testProblemDetailData,
-                            loreList: completeStore.testProblemDetailData.loreDTOList,
-                            type: completeStore.testProblemDetailData.problemType,
-                        }}
-                        isExpand={true}
-                    />
-                ) : null}
-                {/* <Route>
-                    <ReadEdit path='/complete/:testId/:id' />
-                </Route> */}
+                {(completeStore.testProblemDetailData.problemType === 1 ||
+                    completeStore.testProblemDetailData.problemType === 2) && (
+                    <Package>
+                        <Fraction
+                            data={{
+                                getFraction: completeStore.testProblemDetailData.getFraction,
+                                fraction: completeStore.testProblemDetailData.fraction,
+                            }}
+                        ></Fraction>
+                        <Wrap>
+                            <ChoiceProblem
+                                data={{
+                                    ...completeStore.testProblemDetailData,
+                                    type: completeStore.testProblemDetailData.problemType,
+                                }}
+                                isExpand={true}
+                            />
+                            <OptionWrap>
+                                <OptionA
+                                    data={{
+                                        problemType: completeStore.testProblemDetailData.problemType,
+                                        answer: completeStore.testProblemDetailData.answer,
+                                        studentAnswer: completeStore.testProblemDetailData.studentAnswer,
+                                        option: completeStore.testProblemDetailData.option,
+                                    }}
+                                ></OptionA>
+                            </OptionWrap>
+                        </Wrap>
+                    </Package>
+                )}
+                {completeStore.testProblemDetailData.problemType === 3 && (
+                    <Package>
+                        <Fraction
+                            data={{
+                                getFraction: completeStore.testProblemDetailData.getFraction,
+                                fraction: completeStore.testProblemDetailData.fraction,
+                            }}
+                        ></Fraction>
+                        <Wrap>
+                            <JudgeProblem
+                                data={{
+                                    ...completeStore.testProblemDetailData,
+                                    type: completeStore.testProblemDetailData.problemType,
+                                }}
+                                isExpand={true}
+                            />
+                            <OptionWrap>
+                                <OptionB
+                                    data={{
+                                        answer: completeStore.testProblemDetailData.answer,
+                                        studentAnswer: completeStore.testProblemDetailData.studentAnswer,
+                                    }}
+                                ></OptionB>
+                            </OptionWrap>
+                        </Wrap>
+                    </Package>
+                )}
+                {completeStore.testProblemDetailData.problemType === 4 && (
+                    <Package>
+                        <Fraction
+                            data={{
+                                getFraction: completeStore.testProblemDetailData.getFraction,
+                                fraction: completeStore.testProblemDetailData.fraction,
+                            }}
+                        ></Fraction>
+                        <FractionListA></FractionListA>
+                        <FillingProblem
+                            data={{
+                                ...completeStore.testProblemDetailData,
+                                type: completeStore.testProblemDetailData.problemType,
+                            }}
+                            isExpand={true}
+                        />
+                    </Package>
+                )}
+                {completeStore.testProblemDetailData.problemType === 5 && (
+                    <Package>
+                        <Fraction
+                            data={{
+                                getFraction: completeStore.testProblemDetailData.getFraction,
+                                fraction: completeStore.testProblemDetailData.fraction,
+                            }}
+                        ></Fraction>
+                        <FractionListB></FractionListB>
+                        <ShortAnswerProblem
+                            data={{
+                                ...completeStore.testProblemDetailData,
+                                type: completeStore.testProblemDetailData.problemType,
+                            }}
+                            isExpand={true}
+                        />
+                    </Package>
+                )}
             </Container>
         )
     })

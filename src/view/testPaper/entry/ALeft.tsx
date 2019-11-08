@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from 'react'
+import React, { FC, useContext } from 'react'
 import styled from '@emotion/styled'
 import { useObserver } from 'mobx-react-lite'
 import { MobXProviderContext } from 'mobx-react'
@@ -10,49 +10,49 @@ import { IStore } from '../../../store'
 import frequently from '../../../utils/frequently'
 import Button from '../../../components/Button'
 
-interface ITestList {
-    id: number
-    type: number
-    testId: number
-    status: number
-}
+// interface ITestList {
+//     id: number
+//     type: number
+//     testId: number
+//     status: number
+// }
 
-interface IOptions {
-    currenState: boolean
-}
+// interface IOptions {
+//     currenState: boolean
+// }
 
 const Container = styled.div`
     width: 160px;
     margin-right: 30px;
 `
 
-const TestWrap = styled.div`
-    box-sizing: border-box;
-    margin-top: 26px;
-    width: 100%;
-    box-shadow: 0px 9px 8px 0px rgba(232, 91, 82, 0.12);
-    border-radius: 11px;
-    padding: 8px;
-`
+// const TestWrap = styled.div`
+//     box-sizing: border-box;
+//     margin-top: 26px;
+//     width: 100%;
+//     box-shadow: 0px 9px 8px 0px rgba(232, 91, 82, 0.12);
+//     border-radius: 11px;
+//     padding: 8px;
+// `
 
-const Test = styled.div<{ option: IOptions }>`
-    width: 147px;
-    height: 48px;
-    text-align: center;
-    line-height: 48px;
-    font-size: 20px;
-    font-family: PingFangSC-Regular;
-    font-weight: 400;
-    background-color: ${props => (props.option.currenState ? '#3B8DF2' : '')};
-    color: ${props => (props.option.currenState ? '#fff' : '')};
-    border-radius: 10px;
-    margin-bottom: 4px;
-    :hover {
-        background-color: rgba(59, 141, 242, 1);
-        color: #fff;
-        cursor: pointer;
-    }
-`
+// const Test = styled.div<{ option: IOptions }>`
+//     width: 147px;
+//     height: 48px;
+//     text-align: center;
+//     line-height: 48px;
+//     font-size: 20px;
+//     font-family: PingFangSC-Regular;
+//     font-weight: 400;
+//     background-color: ${props => (props.option.currenState ? '#3B8DF2' : '')};
+//     color: ${props => (props.option.currenState ? '#fff' : '')};
+//     border-radius: 10px;
+//     margin-bottom: 4px;
+//     :hover {
+//         background-color: rgba(59, 141, 242, 1);
+//         color: #fff;
+//         cursor: pointer;
+//     }
+// `
 const EntryTextWrap = styled.div`
     text-align: center;
     margin: 30px 0;
@@ -98,25 +98,25 @@ const ButtonWrap = styled.div`
 `
 
 const ALeft: FC<RouteComponentProps> = props => {
-    const [typeArr] = useState([
-        { id: 1, name: '随堂测' },
-        { id: 2, name: '作业' },
-        { id: 3, name: '测试' },
-        { id: 4, name: '预习' },
-    ])
+    // const [typeArr] = useState([
+    //     { id: 1, name: '随堂测' },
+    //     { id: 2, name: '作业' },
+    //     { id: 3, name: '测试' },
+    //     { id: 4, name: '预习' },
+    // ])
     const { entryStore } = useContext<IStore>(MobXProviderContext)
 
     //切换类型
-    const handleClickTestType = (data: ITestList) => {
-        // if (entryStore.testProblemData.id === data.id) return
-        // entryStore.testProblemData.id = data.id
-        // props.history.push({
-        //     pathname: `/entry/${data.id}`,
-        //     state: {
-        //         courseId: entryStore.testsStatuData.courseId.toString(),
-        //     },
-        // })
-    }
+    // const handleClickTestType = (data: ITestList) => {
+    // if (entryStore.testProblemData.id === data.id) return
+    // entryStore.testProblemData.id = data.id
+    // props.history.push({
+    //     pathname: `/entry/${data.id}`,
+    //     state: {
+    //         courseId: entryStore.testsStatuData.courseId.toString(),
+    //     },
+    // })
+    // }
 
     //返回首页
     const handleClickLink = () => {
@@ -157,7 +157,7 @@ const ALeft: FC<RouteComponentProps> = props => {
                     <RutemName>返回首页</RutemName>
                 </Button>
             </ButtonWrap>
-            <TestWrap>
+            {/* <TestWrap>
                 {entryStore.testsStatuData.testList.map((item: ITestList) => (
                     <Test
                         key={item.id}
@@ -167,7 +167,7 @@ const ALeft: FC<RouteComponentProps> = props => {
                         {typeArr[item.type - 1].name}
                     </Test>
                 ))}
-            </TestWrap>
+            </TestWrap> */}
             <EntryTextWrap>
                 <TextProblem>
                     填空题还有<Amount>{entryStore.testProblemData.key.unFinishFillingProblems}</Amount>题需录入

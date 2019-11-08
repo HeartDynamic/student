@@ -303,6 +303,9 @@ class CompleteStore implements ICompleteStore {
                 })
             } else if (res.data.problemType === 4) {
                 res.data.answer = JSON.parse(res.data.answer)
+                if (res.data.fractionList && res.data.fractionList.length > 0) {
+                    res.data.fractionList = JSON.parse(res.data.fractionList)
+                }
                 if (res.data.studentAnswer && res.data.studentAnswer.length > 0) {
                     res.data.studentAnswer = JSON.parse(res.data.studentAnswer)
                 } else {
@@ -327,6 +330,9 @@ class CompleteStore implements ICompleteStore {
                 }
             } else if (res.data.problemType === 5) {
                 res.data.answer = JSON.parse(res.data.answer)
+                if (res.data.fractionList && res.data.fractionList.length > 0) {
+                    res.data.fractionList = JSON.parse(res.data.fractionList)
+                }
                 if (res.data.studentAnswer && res.data.studentAnswer.length > 0) {
                     res.data.studentAnswer = JSON.parse(res.data.studentAnswer)
                 } else {

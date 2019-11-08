@@ -85,6 +85,7 @@ interface ITestProblemDetail {
     answer: any
     solution: any
     fraction: number
+    getFraction: number
     loreList: ILoreList[]
     fractionList: IFractionList[]
     studentTestProblemId: number
@@ -193,6 +194,7 @@ class EntryStore implements IEntryStore {
         answer: {},
         solution: {},
         fraction: 0,
+        getFraction: 0,
         loreList: [],
         fractionList: [],
         studentTestProblemId: 0,
@@ -277,10 +279,34 @@ class EntryStore implements IEntryStore {
             testId: data.testId,
         })
         if (res.success) {
-            // let problemType1 = [1, 2]
+            let problemType1 = [1, 2]
             let problemType2 = [4, 5]
             res.data.topic = JSON.parse(res.data.topic)
             res.data.solution = JSON.parse(res.data.solution)
+            if (problemType1.includes(res.data.problemType)) {
+                res.data.option = JSON.parse(res.data.option)
+                let letter = ['A', 'B', 'C', 'D', 'E', 'F', 'I']
+                let studentAnswer: any = []
+                res.data.option.map((item: any, index: number) => {
+                    item.isSelected = false
+                    if (res.data.problemType === 2) {
+                        if (res.data.studentAnswer) {
+                            studentAnswer = res.data.studentAnswer.split(',')
+                            studentAnswer.map((t: string) => {
+                                if (t === letter[index]) {
+                                    item.isSelected = true
+                                }
+                                return t
+                            })
+                        }
+                    } else {
+                        if (letter[index] === res.data.studentAnswer) {
+                            item.isSelected = true
+                        }
+                    }
+                    return item
+                })
+            }
             if (problemType2.includes(res.data.problemType)) {
                 res.data.answer = JSON.parse(res.data.answer)
                 if (typeof res.data.fractionList === 'string') {
