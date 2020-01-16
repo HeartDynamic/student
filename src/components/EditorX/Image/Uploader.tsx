@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, ChangeEvent } from 'react'
+import React, { MouseEvent, ChangeEvent, forwardRef, Ref } from 'react'
 import styled from '@emotion/styled'
 import Cookies from 'js-cookie'
 import { Editor } from 'slate-react'
@@ -22,7 +22,7 @@ interface IProps {
     editor: Editor | null
 }
 
-const Uploader: FC<IProps> = props => {
+const Uploader = forwardRef((props: IProps, ref: Ref<HTMLInputElement>) => {
     const handleClick = (event: MouseEvent) => {
         // @ts-ignore
         event.target.value = null
@@ -42,19 +42,11 @@ const Uploader: FC<IProps> = props => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data, insertImage, props)
                 props.editor!.command(insertImage, `https://img2.heartdynamic.cn/${data.key}`)
+                console.log(data)
             })
     }
-    return (
-        <Container
-            onClick={handleClick}
-            type='file'
-            accept='image/*'
-            onChange={handleFileUpload}
-            id='editor-image-input'
-        />
-    )
-}
+    return <Container onClick={handleClick} type='file' accept='image/*' onChange={handleFileUpload} ref={ref} />
+})
 
 export default Uploader

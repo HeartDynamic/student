@@ -107,16 +107,7 @@ const AnswerSpan = styled.span`
     color: rgba(7, 41, 121, 1);
 `
 
-const Answer = styled.div`
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    font-size: 16px;
-    font-family: PingFangSC-Regular;
-    font-weight: 400;
-    color: rgba(7, 41, 121, 1);
-`
+const Answer = styled.div``
 
 const ShortAnswerProblemList: FC = props => {
     const { answerStore } = useContext<IStore>(MobXProviderContext)

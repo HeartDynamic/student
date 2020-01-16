@@ -125,6 +125,7 @@ const DynamicList: FC = props => {
     }, [])
 
     const handleClickLink = (data: IAllTestList) => {
+        console.log(data, 123)
         sessionStorage.removeItem('sessionCurrentType')
         if ((data.status === 1 || data.status === 2) && data.testStatus === 1) {
             navigate(`/answer/${data.id}`)

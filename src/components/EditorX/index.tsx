@@ -51,12 +51,9 @@ const ShowVacancyButton = styled.button`
 `
 const Space = styled.span`
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    color: #fff;
-    background-color: #3a93df;
-    text-align: center;
+    width: 60px;
+    height: 18px;
+    border-bottom: 2px solid #072979;
     margin: 0 8px;
 `
 
@@ -102,6 +99,7 @@ const EditorX: FC<IProps> = props => {
         return value.blocks.some(node => node!.type === type)
     }
     const ref = useRef<Editor>(null)
+    const uploaderRef = useRef(null)
     const onChange = ({ value }: OnChangeParam) => {
         // 聚焦时显示工具栏，失焦时隐藏工具栏
         setShowToolBar(value.selection.isFocused)
@@ -195,11 +193,11 @@ const EditorX: FC<IProps> = props => {
                         {...inlineProps}
                         latex={latex}
                         isReadOnly={props.readonly === undefined ? false : props.readonly}
-                    ></Formula>
+                    />
                 )
             }
             case 'space': {
-                return <Space {...inlineProps}></Space>
+                return <Space {...inlineProps} />
             }
             default:
                 return next()
@@ -255,7 +253,8 @@ const EditorX: FC<IProps> = props => {
         event.stopPropagation()
         const editor = ref.current
         if (type === 'image') {
-            document.getElementById('editor-image-input')!.click()
+            // @ts-ignore
+            uploaderRef.current.click()
         } else if (type === 'formula') {
             editor!.insertInline({
                 type: 'formula',
@@ -277,9 +276,9 @@ const EditorX: FC<IProps> = props => {
                     onClickMark={onClickMark}
                     onClickBlock={onClickBlock}
                     onClickInline={onClickInline}
-                ></ToolBar>
+                />
             ) : !props.readonly ? (
-                <Blank></Blank>
+                <Blank />
             ) : null}
             {props.showVacancy && (
                 <ShowVacancyButton onMouseDown={event => onClickInline(event, 'space')}>插入填空</ShowVacancyButton>
@@ -307,7 +306,7 @@ const EditorX: FC<IProps> = props => {
                     schema={schema}
                 />
             )}
-            <ImageUploader editor={ref.current}></ImageUploader>
+            <ImageUploader editor={ref.current} ref={uploaderRef} />
         </Container>
     )
 }

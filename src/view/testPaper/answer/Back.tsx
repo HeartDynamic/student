@@ -108,20 +108,12 @@ const Back: FC<RouteComponentProps> = props => {
         marginTop: '10%',
         borderBottom: ' 1px solid rgba(151, 151, 151, 0.26)',
     }
-    const buttonOption = {
-        height: '40px',
-        color: 'rgba(153, 153, 153, 1)',
-        border: '1px solid rgba(153,153,153,1)',
-        shadow: '0px 6px 5px 0px rgba(59,141,242,0.2)',
-        HColor: '#3a93df',
-        HBorder: '1px solid #3a93df',
-    }
 
     return useObserver(() => (
         <Container>
             <Left>
                 <ButtonWrap>
-                    <Button options={buttonOption} onClick={handleClickLink}>
+                    <Button onClick={handleClickLink}>
                         <FaReply></FaReply>
                         <RutemName>返回首页</RutemName>
                     </Button>

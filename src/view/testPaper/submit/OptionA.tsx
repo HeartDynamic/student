@@ -16,15 +16,10 @@ const OptionA: FC = () => {
     const { submitStore } = useContext<IStore>(MobXProviderContext)
 
     const buttonOption = {
-        width: '150px',
-        height: '60px',
+        width: '100px',
         size: '20px',
         family: 'PingFangSC-Medium',
         weight: '500',
-        bgColor: '#fff',
-        color: '#3f8cea',
-        border: '2px solid #fff',
-        shadow: '0px 7px 7px 0px rgba(62,144,243,0.21)',
         cursor: 'auto',
     }
 
@@ -38,6 +33,7 @@ const OptionA: FC = () => {
                                 ...buttonOption,
                                 color: item.statu ? '#fff' : '#3f8cea',
                                 bgColor: item.statu ? '#3f8cea' : '#fff',
+                                HbgColor: item.statu ? '#3f8cea' : '#fff',
                             }}
                         >
                             {answerOption[index]}

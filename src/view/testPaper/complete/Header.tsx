@@ -2,7 +2,7 @@ import React, { FC, useContext } from 'react'
 import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
-import { Link, navigate } from '@reach/router'
+import { navigate } from '@reach/router'
 import { FaReply } from 'react-icons/fa'
 
 import { IStore } from '../../../store'
@@ -46,27 +46,27 @@ const FractionContainer = styled.div`
     display: flex;
     height: 160px;
 `
-const FeaturesWrap = styled.div`
-    width: 160px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-`
-const RutemWrap = styled.div`
-    box-sizing: border-box;
-    width: 100%;
-    height: 56px;
-    line-height: 54px;
-    box-shadow: 0px 6px 5px 0px rgba(59, 141, 242, 0.2);
-    border-radius: 11px;
-    border: 1px solid rgba(153, 153, 153, 1);
-    a {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        color: #999;
-    }
-`
+// const FeaturesWrap = styled.div`
+//     width: 160px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-around;
+// `
+// const RutemWrap = styled.div`
+//     box-sizing: border-box;
+//     width: 100%;
+//     height: 56px;
+//     line-height: 54px;
+//     box-shadow: 0px 6px 5px 0px rgba(59, 141, 242, 0.2);
+//     border-radius: 11px;
+//     border: 1px solid rgba(153, 153, 153, 1);
+//     a {
+//         display: flex;
+//         justify-content: space-evenly;
+//         align-items: center;
+//         color: #999;
+//     }
+// `
 const RutemName = styled.span``
 const CircleTypeWrap = styled.ul`
     box-sizing: border-box;
@@ -133,7 +133,7 @@ const ButtonWrap = styled.div`
     }
 `
 
-const Header: FC = props => {
+const Header: FC = () => {
     const { completeStore } = useContext<IStore>(MobXProviderContext)
 
     //返回首页
@@ -142,37 +142,28 @@ const Header: FC = props => {
         navigate(`/`)
     }
 
-    const buttonOption = {
-        height: '40px',
-        color: 'rgba(153, 153, 153, 1)',
-        border: '1px solid rgba(153,153,153,1)',
-        shadow: '0px 6px 5px 0px rgba(59,141,242,0.2)',
-        HColor: '#3a93df',
-        HBorder: '1px solid #3a93df',
-    }
-
     return useObserver(() => {
         return (
             <Container>
+                <ButtonWrap>
+                    <Button onClick={handleClickLink}>
+                        <FaReply></FaReply>
+                        <RutemName>返回首页</RutemName>
+                    </Button>
+                </ButtonWrap>
                 <TitleWrap>
                     <Title>试卷</Title>
                     <Vertical>|</Vertical>
                     <TitleType>{completeStore.testProblemData.testName}</TitleType>
                 </TitleWrap>
                 <FractionContainer>
-                    <FeaturesWrap>
-                        <ButtonWrap>
-                            <Button options={buttonOption} onClick={handleClickLink}>
-                                <FaReply></FaReply>
-                                <RutemName>返回首页</RutemName>
-                            </Button>
-                        </ButtonWrap>
+                    {/* <FeaturesWrap>
                         <RutemWrap>
                             <Link to='/'>
                                 <RutemName>查看该卷分析</RutemName>
                             </Link>
                         </RutemWrap>
-                    </FeaturesWrap>
+                    </FeaturesWrap> */}
                     <CircleTypeWrap>
                         {completeStore.testAccuracy.problemAccuracy.map((item, index) => (
                             <LiItem key={item.type}>

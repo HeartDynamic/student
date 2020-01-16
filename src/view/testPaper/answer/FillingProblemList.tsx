@@ -113,10 +113,6 @@ const Answer = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 30px;
     padding: 0px 48px 20px 14px;
-    font-size: 16px;
-    font-family: PingFangSC-Regular;
-    font-weight: 400;
-    color: rgba(7, 41, 121, 1);
 `
 
 const FillingProblemList: FC = props => {

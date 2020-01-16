@@ -1,5 +1,5 @@
 /*
-   交卷之后（老师公布答案）
+   交卷之后未录入（老师公布答案）
 */
 import React, { useEffect, FC, useContext } from 'react'
 import styled from '@emotion/styled'

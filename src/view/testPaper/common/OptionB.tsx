@@ -27,30 +27,28 @@ const OptionB: FC<IParams> = props => {
     ])
 
     const setStyleColor = (data: any) => {
-        let color = '#E85B52'
+        let color = '#333'
         if (data.answerOption === props.data.studentAnswer) {
             color = '#fff'
         }
         return color
     }
     const setStyleBgColor = (data: any) => {
-        let color = ''
+        let bgColor = '#fff'
+        let HbgColor = '#fff'
         if (data.answerOption === props.data.studentAnswer) {
-            color = '#f1fd72'
+            bgColor = '#59D676'
+            HbgColor = '#59D676'
         }
-        return color
+        return { bgColor, HbgColor }
     }
 
     const buttonOption = {
-        width: '150px',
-        height: '60px',
+        width: '100px',
         size: '20px',
         family: 'PingFangSC-Medium',
         weight: '500',
         bgColor: '#fff',
-        color: '#3f8cea',
-        border: '2px solid #fff',
-        shadow: '0px 7px 7px 0px rgba(62,144,243,0.21)',
         cursor: 'auto',
     }
     return (
@@ -61,12 +59,10 @@ const OptionB: FC<IParams> = props => {
                         options={{
                             ...buttonOption,
                             color: setStyleColor({
-                                answer: props.data.answer,
                                 studentAnswer: props.data.studentAnswer,
                                 answerOption: answerOption[index].id,
                             }),
-                            bgColor: setStyleBgColor({
-                                answer: props.data.answer,
+                            ...setStyleBgColor({
                                 studentAnswer: props.data.studentAnswer,
                                 answerOption: answerOption[index].id,
                             }),

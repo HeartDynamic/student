@@ -5,9 +5,9 @@ import { useObserver } from 'mobx-react-lite'
 import { RouteComponentProps } from '@reach/router'
 
 import { IStore } from '../../../store'
-import mark from '../common/mark.png'
-import whtie from '../common/whtie.png'
-import whtie1 from '../common/whtie1.png'
+import mark from '../../../images/test-mark.png'
+import whtie1 from '../../../images/test-whtie1.png'
+import whtie3 from '../../../images/test-whtie3.png'
 
 interface ISetType {
     setType: {
@@ -45,7 +45,7 @@ const ProblemName = styled.span<ISetType>`
             : props.setType.studentAnswer
             ? '#3B8DF2'
             : '#E85B52'};
-    background: url(${props => (props.setType.isColor ? whtie : props.setType.mark === 1 ? mark : whtie1)});
+    background: url(${props => (props.setType.isColor ? whtie3 : props.setType.mark === 1 ? mark : whtie1)});
     text-align: center;
     border-radius: 50%;
     cursor: pointer;
@@ -53,7 +53,7 @@ const ProblemName = styled.span<ISetType>`
     font-family: PingFangSC-Medium;
     font-weight: 500;
     :hover {
-        background-image: url(${whtie});
+        background-image: url(${whtie3});
         background-color: rgba(233, 92, 83, 1);
         color: #fff;
     }

@@ -14,7 +14,6 @@ const Container = styled.div`
     height: 100%;
     box-sizing: border-box;
     padding-top: 80px;
-    background-color: #f9f9f9;
     position: relative;
 `
 

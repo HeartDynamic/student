@@ -4,10 +4,10 @@ import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
 import { IStore } from '../../../store'
 
-import Circle1 from '../common/Circle1.png'
-import Circle2 from '../common/Circle2.png'
-import Circle3 from '../common/Circle3.png'
-import Circle4 from '../common/Circle4.png'
+import Circle1 from '../../../images/test-circle1.png'
+import Circle2 from '../../../images/test-circle2.png'
+import Circle3 from '../../../images/test-circle3.png'
+import Circle4 from '../../../images/test-circle4.png'
 
 const Container = styled.div`
     display: flex;
@@ -60,7 +60,7 @@ const BgCircle1 = styled.div<{ bgImage: string }>`
     border-radius: 50%;
 `
 
-const FractionListA: FC = props => {
+const FractionListA: FC = () => {
     const { completeStore } = useContext<IStore>(MobXProviderContext)
 
     return useObserver(() => {

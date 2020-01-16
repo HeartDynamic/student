@@ -5,6 +5,7 @@ import { submitStore, ISubmitStore } from './submit'
 import { entryStore, IEntryStore } from './entry'
 import { completeStore, ICompleteStore } from './complete'
 import { classTableStore, IClassTableStore } from './classTable'
+import { practiseStore, IPractiseStore } from './practise'
 
 export interface IStore {
     userStore: IUserStore
@@ -14,6 +15,7 @@ export interface IStore {
     entryStore: IEntryStore
     completeStore: ICompleteStore
     classTableStore: IClassTableStore
+    practiseStore: IPractiseStore
 }
 
 export const store: IStore = {
@@ -24,4 +26,5 @@ export const store: IStore = {
     entryStore,
     completeStore,
     classTableStore,
+    practiseStore,
 }

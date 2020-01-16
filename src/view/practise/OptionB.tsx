@@ -2,8 +2,10 @@ import React, { FC, useContext, useState } from 'react'
 import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
-import { IStore } from '../../../store'
-import Button from '../../../components/Button'
+import { FaCheck, FaTimes } from 'react-icons/fa'
+
+import { IStore } from '../../store'
+import Button from '../../components/Button'
 
 const OptionWrap = styled.div``
 
@@ -15,21 +17,31 @@ const OptionB: FC = () => {
     const [answerOption] = useState([
         {
             id: '1',
-            name: '对',
+            name: <FaCheck></FaCheck>,
         },
         {
             id: '0',
-            name: '错',
+            name: <FaTimes></FaTimes>,
         },
     ])
-    const { submitStore } = useContext<IStore>(MobXProviderContext)
+    const { practiseStore } = useContext<IStore>(MobXProviderContext)
+
+    const handleClickAnswer = (id: number) => {
+        if (practiseStore.dailyProblem.solution) {
+            return
+        }
+        practiseStore.dailyProblem.studentAnswer = id
+    }
 
     const buttonOption = {
-        width: '100px',
+        height: '40px',
         size: '20px',
         family: 'PingFangSC-Medium',
         weight: '500',
-        cursor: 'auto',
+        color: '#3f8cea',
+        shadow: '0px 7px 7px 0px rgba(149,220,235,0.22)',
+        HbgColor: '#3f8cea',
+        HColor: '#fff',
     }
     return useObserver(() => {
         return (
@@ -39,10 +51,11 @@ const OptionB: FC = () => {
                         <Button
                             options={{
                                 ...buttonOption,
-                                color: submitStore.setAnswer.studentAnswer === item.id ? '#fff' : '#3f8cea',
-                                bgColor: submitStore.setAnswer.studentAnswer === item.id ? '#3f8cea' : '#fff',
-                                HbgColor: submitStore.setAnswer.studentAnswer === item.id ? '#3f8cea' : '#fff',
+                                color: practiseStore.dailyProblem.studentAnswer === item.id ? '#fff' : '#3f8cea',
+                                bgColor: practiseStore.dailyProblem.studentAnswer === item.id ? '#3f8cea' : '#fff',
                             }}
+                            onClick={() => handleClickAnswer(item.id)}
+                            disabled={practiseStore.dailyProblem.solution}
                         >
                             {item.name}
                         </Button>

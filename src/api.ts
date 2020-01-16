@@ -2,8 +2,8 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 export const instance = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://api.likeyun.net' : '',
-    // baseURL: 'http://192.168.0.104:8080/step',
+    // baseURL: process.env.NODE_ENV === 'production' ? 'https://api.likeyun.net' : '',
+    baseURL: 'http://192.168.0.104:8080/step',
     // baseURL: 'https://api.likeyun.net',
     timeout: 5000,
 })
@@ -139,10 +139,16 @@ const classTable = {
     getCourses: (data: any) => request.get('/students/courses', data),
 }
 
+const practise = {
+    getDailyProblem: () => request.get('/student/daily-problem/get'),
+    postDailyProblem: (data: any) => request.post('/student/daily-problem/update', data),
+}
+
 export default {
     auth,
     user,
     main,
     answer,
     classTable,
+    practise,
 }

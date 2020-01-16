@@ -4,8 +4,9 @@ import { RouteComponentProps } from '@reach/router'
 
 import DynamicList from './DynamicList'
 import Pending from './Pending'
-import BitmapLeft from './BitmapLeft.png'
-import BitmapRight from './BitmapRight.png'
+import Practice from './Practice'
+import BitmapLeft from '../../images/main-bitmap1.png'
+import BitmapRight from '../../images/main-bitmap2.png'
 
 const Container = styled.div`
     box-sizing: border-box;
@@ -17,12 +18,15 @@ const Container = styled.div`
 
 const MyLeft = styled.div`
     width: 258px;
-    height: 100%;
+    /* height: 100%;
     box-shadow: 0px 8px 10px 0px rgba(222, 129, 129, 0.16);
     border-radius: 8px;
-    background-color: #fff;
+    background-color: #fff; */
 `
 const MyBitmapLeftWrap = styled.div`
+    width: 100%;
+`
+const Bitmap = styled.div`
     width: 100%;
     height: 146px;
     background: url(${BitmapLeft}) no-repeat;
@@ -78,8 +82,11 @@ const Main: FC<RouteComponentProps> = () => {
         <Container>
             <MyLeft>
                 <MyBitmapLeftWrap>
-                    <MyTitleLeft>掌握程度</MyTitleLeft>
+                    <Bitmap>
+                        <MyTitleLeft>掌握程度</MyTitleLeft>
+                    </Bitmap>
                 </MyBitmapLeftWrap>
+                <Practice></Practice>
             </MyLeft>
             <MyAmid>
                 <MyAmidWrap>

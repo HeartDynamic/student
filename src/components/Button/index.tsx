@@ -4,51 +4,47 @@ import styled from '@emotion/styled'
 interface IOptions {
     width?: string
     height?: string
-    lHeight?: string
     border?: string
     radius?: string
-    size?: string
-    faily?: string
-    weight?: string
     color?: string
     bgColor?: string
-    shadow?: string
-    spacing?: string
-    cursor?: string
-    HbgColor?: string
-    HBorder?: string
     HColor?: string
+    HBorder?: string
+    HbgColor?: string
+    shadow?: string
 }
 
 interface IButton {
     title?: string
+    disabled?: boolean
     options?: IOptions
     onClick?(): void
 }
 
 const MyButton = styled.button<{ option: IOptions }>`
     box-sizing: border-box;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: ${props => props.option.width || ''};
-    height: ${props => props.option.height || '28px'};
-    line-height: ${props => props.option.lHeight || '26px'};
-    text-align: center;
-    border: ${props => props.option.border || 'none'};
+    height: ${props => props.option.height || '40px'};
+    border: ${props => props.option.border || '1px solid transparent'};
     border-radius: ${props => props.option.radius || '4px'};
-    font-size: ${props => props.option.size || '12px'};
-    font-family: ${props => props.option.faily || 'PingFang-SC-Medium'};
-    font-weight: ${props => props.option.weight || '500'};
+    background-color: ${props => props.option.bgColor || '#1890ff'};
     color: ${props => props.option.color || '#fff'};
-    background-color: ${props => props.option.bgColor || '#fff'};
+    box-shadow: ${props => props.option.shadow || '0px 7px 7px 0px rgba(149, 220, 235, 0.22)'};
     padding: 0px 16px;
     outline: none;
-    box-shadow: ${props => props.option.shadow || ''};
-    letter-spacing: ${props => props.option.spacing || ''};
-    cursor: ${props => props.option.cursor || 'pointer'};
+    cursor: pointer;
+
     &:hover {
-        background-color: ${props => props.option.HbgColor || ''};
-        border: ${props => props.option.HBorder || ''};
+        background-color: ${props => props.option.HbgColor || '#40a9ff'};
+        border: ${props => props.option.HBorder || '1px solid transparent'};
         color: ${props => props.option.HColor || ''};
+    }
+    :disabled {
+        pointer-events: none;
+        cursor: not-allowed;
     }
 `
 
@@ -57,7 +53,13 @@ const Button: FC<IButton> = props => {
         props.onClick && props.onClick()
     }
     return (
-        <MyButton type='button' title={props.title} onClick={handleClick} option={props.options || {}}>
+        <MyButton
+            type='button'
+            title={props.title}
+            onClick={handleClick}
+            option={props.options || {}}
+            disabled={props.disabled}
+        >
             {props.children}
         </MyButton>
     )

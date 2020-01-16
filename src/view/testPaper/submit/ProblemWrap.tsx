@@ -2,11 +2,12 @@ import React, { FC, useContext } from 'react'
 import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
-import { IStore } from '../../../store'
 import { RouteComponentProps } from '@reach/router'
-import mark from '../common/mark.png'
-import whtie1 from '../common/whtie1.png'
-import whtie2 from '../common/whtie2.png'
+
+import { IStore } from '../../../store'
+import mark from '../../../images/test-mark.png'
+import whtie1 from '../../../images/test-whtie1.png'
+import whtie2 from '../../../images/test-whtie2.png'
 
 interface ISetType {
     setType: {

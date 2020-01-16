@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState, useEffect } from 'react'
+import React, { FC, useContext } from 'react'
 import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
@@ -6,10 +6,10 @@ import { RouteComponentProps } from '@reach/router'
 import { IStore } from '../../../store'
 
 import Button from '../../../components/Button'
-import Circle1 from '../common/Circle1.png'
-import Circle2 from '../common/Circle2.png'
-import Circle3 from '../common/Circle3.png'
-import Circle4 from '../common/Circle4.png'
+import Circle1 from '../../../images/test-circle1.png'
+import Circle2 from '../../../images/test-circle2.png'
+import Circle3 from '../../../images/test-circle3.png'
+import Circle4 from '../../../images/test-circle4.png'
 
 const Container = styled.div`
     display: flex;
@@ -70,14 +70,6 @@ interface IParams {
 
 const FractionListA: FC<RouteComponentProps<IParams>> = props => {
     const { entryStore } = useContext<IStore>(MobXProviderContext)
-    const [currentFraction, setCurrentFraction] = useState(
-        Array.from({ length: entryStore.testProblemDetailData.fractionList.length }, () => 1)
-    )
-
-    useEffect(() => {
-        setCurrentFraction(Array.from({ length: entryStore.testProblemDetailData.fractionList.length }, () => 1))
-        // eslint-disable-next-line
-    }, [entryStore.testProblemDetailData.id])
 
     //对错
     const handleClick = (text: string, index: number) => {
@@ -99,12 +91,12 @@ const FractionListA: FC<RouteComponentProps<IParams>> = props => {
     //保存该题录入
     const handleClickNext = () => {
         let fraction = 0
-        let length = entryStore.testProblemDetailData.fractionList.length
         let Total = 0
         entryStore.testProblemDetailData.fractionList.map(item => {
             if (item.fraction === '2') {
                 fraction += 1
             }
+            return item
         })
 
         Total = Number(

@@ -25,7 +25,6 @@ interface IOptions {
 const Container = styled.div`
     width: 160px;
     height: 100%;
-    margin-right: 20px;
 `
 
 const TestWrap = styled.div`
@@ -112,14 +111,6 @@ const ALeft: FC<RouteComponentProps> = props => {
         navigate(`/`)
     }
 
-    const buttonOption = {
-        height: '40px',
-        color: 'rgba(153, 153, 153, 1)',
-        border: '1px solid rgba(153,153,153,1)',
-        shadow: '0px 6px 5px 0px rgba(59,141,242,0.2)',
-        HColor: '#3a93df',
-        HBorder: '1px solid #3a93df',
-    }
     const dialogOption = {
         width: '50%',
         marginTop: '8%',
@@ -128,35 +119,39 @@ const ALeft: FC<RouteComponentProps> = props => {
     return useObserver(() => (
         <Container>
             <ButtonWrap>
-                <Button options={buttonOption} onClick={handleClickLink}>
+                <Button onClick={handleClickLink}>
                     <FaReply></FaReply>
                     <RutemName>返回首页</RutemName>
                 </Button>
             </ButtonWrap>
-            <TestWrap>
-                {submitStore.testProblemData.preparation.id && (
-                    <ReadyWrap>
-                        <ReadyName onClick={handleClickReady}>课前准备</ReadyName>
-                        {isShowReady ? (
-                            <Dialog title='课前准备' options={dialogOption} onClickClose={handleClickReady}>
-                                <Editor
-                                    value={Value.fromJSON(JSON.parse(submitStore.testProblemData.preparation.content))}
-                                    readonly
-                                ></Editor>
-                            </Dialog>
-                        ) : null}
-                    </ReadyWrap>
-                )}
-                {submitStore.testsStatuData.testList.map((item: ITestList) => (
-                    <Test
-                        key={item.id}
-                        option={{ currenState: submitStore.testProblemData.id === item.id }}
-                        onClick={() => handleClickTestType(item)}
-                    >
-                        {typeArr[item.type - 1].name}
-                    </Test>
-                ))}
-            </TestWrap>
+            {submitStore.testsStatuData.testList.length ? (
+                <TestWrap>
+                    {submitStore.testProblemData.preparation.id && (
+                        <ReadyWrap>
+                            <ReadyName onClick={handleClickReady}>课前准备</ReadyName>
+                            {isShowReady ? (
+                                <Dialog title='课前准备' options={dialogOption} onClickClose={handleClickReady}>
+                                    <Editor
+                                        value={Value.fromJSON(
+                                            JSON.parse(submitStore.testProblemData.preparation.content)
+                                        )}
+                                        readonly
+                                    ></Editor>
+                                </Dialog>
+                            ) : null}
+                        </ReadyWrap>
+                    )}
+                    {submitStore.testsStatuData.testList.map((item: ITestList) => (
+                        <Test
+                            key={item.id}
+                            option={{ currenState: submitStore.testProblemData.id === item.id }}
+                            onClick={() => handleClickTestType(item)}
+                        >
+                            {typeArr[item.type - 1].name}
+                        </Test>
+                    ))}
+                </TestWrap>
+            ) : null}
         </Container>
     ))
 }
