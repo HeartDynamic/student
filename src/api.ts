@@ -1,9 +1,11 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
+import Toast from './components/Toast'
+
 export const instance = axios.create({
     // baseURL: process.env.NODE_ENV === 'production' ? 'https://api.likeyun.net' : '',
-    baseURL: 'http://192.168.0.104:8080/step',
+    baseURL: 'http://192.168.0.108:8080/step',
     // baseURL: 'https://api.likeyun.net',
     timeout: 5000,
 })
@@ -38,7 +40,6 @@ instance.interceptors.response.use(
     },
     function(error) {
         // 对请求错误做些什么
-        console.log(error.response, 123)
         if (error && error.response.data.code === 4004) {
             if (isError) {
                 Cookies.remove('token')
@@ -59,6 +60,8 @@ instance.interceptors.response.use(
             window.location.href =
                 process.env.NODE_ENV === 'production' ? 'https://www.likeyun.net' : 'http://localhost:1234'
             isError = false
+        } else {
+            Toast.error(error.response.data.message)
         }
     }
 )
@@ -109,6 +112,7 @@ const auth = {
     getCaptcha: () => request.get('/captchas/base64'),
     getRefreshToken: () => request.get('/refresh-token'),
     logOut: () => request.del('/logout'),
+    passwordReset: (data: any) => request.put('/password-reset', data),
 }
 const user = {
     getUserInfo: () => request.get('/user-info'),

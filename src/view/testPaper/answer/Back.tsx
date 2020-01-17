@@ -39,6 +39,7 @@ const Left = styled.div`
     display: flex;
 `
 const Right = styled.div`
+    display: flex;
     svg {
         margin-right: 8px;
     }
@@ -59,6 +60,16 @@ const Back: FC<RouteComponentProps> = props => {
         setIsSaveTestSubmit(true)
         // answerStore.saveTestSubmit(history)
     }
+
+    //打印
+    const handleClickPrint = () => {
+        navigate(`/answer/print/${answerStore.testProblemData.id}`, {
+            state: {
+                linkData: `/answer/${answerStore.testProblemData.id}`,
+            },
+        })
+    }
+
     const handleCloseConfirm = () => {
         setIsSaveTestSubmit(false)
     }
@@ -90,6 +101,12 @@ const Back: FC<RouteComponentProps> = props => {
         HbgColor: '#3f8cea',
     }
     const carryOption = {
+        height: '40px',
+        size: '16px',
+        family: 'PingFangSC-Medium',
+        weight: '500',
+    }
+    const carryOption1 = {
         height: '40px',
         size: '16px',
         family: 'PingFangSC-Medium',
@@ -128,7 +145,11 @@ const Back: FC<RouteComponentProps> = props => {
                 )}
             </Left>
             <Right>
-                <Button options={carryOption} onClick={handleClickSave}>
+                <Button options={carryOption} onClick={handleClickPrint}>
+                    打印
+                </Button>
+                &nbsp; &nbsp; &nbsp;
+                <Button options={carryOption1} onClick={handleClickSave}>
                     <FaPaperPlane></FaPaperPlane>
                     <ButtonName>交卷</ButtonName>
                 </Button>

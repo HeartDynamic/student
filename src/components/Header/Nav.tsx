@@ -55,14 +55,14 @@ const Nav: FC = () => {
                 <Text isActive={active[1]}>课程表</Text>
                 <Line isActive={active[1]} />
             </Item>
-            <Item to='/volume' getProps={({ isCurrent }) => isPartiallyActive(isCurrent, 2)}>
+            {/* <Item to='/volume' getProps={({ isCurrent }) => isPartiallyActive(isCurrent, 2)}>
                 <Text isActive={active[2]}>做题记录</Text>
                 <Line isActive={active[2]} />
             </Item>
             <Item to='/exercise/' getProps={({ isCurrent }) => isPartiallyActive(isCurrent, 3)}>
                 <Text isActive={active[3]}>错题本</Text>
                 <Line isActive={active[3]} />
-            </Item>
+            </Item> */}
         </Container>
     )
 }

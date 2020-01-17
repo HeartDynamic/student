@@ -153,7 +153,7 @@ const Menu: FC<IProps> = props => {
                 </InfoBox>
             </Top>
             <Bottom>
-                <MyLink to='/password-reset'>个人中心</MyLink>
+                <MyLink to='/password-reset'>修改密码</MyLink>
                 <MyLogOut onClick={handleClickLogOut}>退出登录</MyLogOut>
             </Bottom>
         </Container>

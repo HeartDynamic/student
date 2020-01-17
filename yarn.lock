@@ -1382,6 +1382,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/crypto-js@^3.1.43":
+  version "3.1.43"
+  resolved "https://registry.npm.taobao.org/@types/crypto-js/download/@types/crypto-js-3.1.43.tgz#b859347d6289ba13e347c335a4c9efa63337a748"
+  integrity sha1-uFk0fWKJuhPjR8M1pMnvpjM3p0g=
+
 "@types/echarts@^4.1.11":
   version "4.4.1"
   resolved "https://registry.npm.taobao.org/@types/echarts/download/@types/echarts-4.4.1.tgz#d5b257d38d7af62b7bba8cca952e814f610b1f03"
@@ -3170,6 +3175,11 @@ crypto-browserify@^3.11.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
+
+crypto-js@^3.1.9-1:
+  version "3.1.9-1"
+  resolved "https://registry.npm.taobao.org/crypto-js/download/crypto-js-3.1.9-1.tgz#fda19e761fc077e01ffbfdc6e9fdfc59e8806cd8"
+  integrity sha1-/aGedh/Ad+Af+/3G6f38WeiAbNg=
 
 css-blank-pseudo@^0.1.4:
   version "0.1.4"
@@ -8827,6 +8837,13 @@ react-slider@^0.11.2:
   version "0.11.2"
   resolved "https://registry.npm.taobao.org/react-slider/download/react-slider-0.11.2.tgz#ae014e1454c3cdd5f28b5c2495b2a08abd9971e6"
   integrity sha1-rgFOFFTDzdXyi1wklbKgir2ZceY=
+
+react-to-print@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.npm.taobao.org/react-to-print/download/react-to-print-2.5.1.tgz#eaaff4248910f179788ab15a593ceb3e07527b8c"
+  integrity sha1-6q/0JIkQ8Xl4irFaWTzrPgdSe4w=
+  dependencies:
+    prop-types "^15.7.2"
 
 react@^16.11.0, react@^16.9.0:
   version "16.11.0"

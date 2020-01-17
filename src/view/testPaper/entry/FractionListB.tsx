@@ -2,7 +2,7 @@ import React, { FC, useContext, useState, ChangeEvent } from 'react'
 import styled from '@emotion/styled'
 import { MobXProviderContext } from 'mobx-react'
 import { useObserver } from 'mobx-react-lite'
-import { RouteComponentProps } from '@reach/router'
+import { RouteComponentProps, navigate } from '@reach/router'
 import { IStore } from '../../../store'
 
 import Button from '../../../components/Button'
@@ -45,7 +45,9 @@ const Input = styled.input`
     text-align: center;
 `
 
-const ButtonWrap = styled.div``
+const ButtonWrap = styled.div`
+    display: flex;
+`
 interface IParams {
     testId: string
 }
@@ -111,6 +113,14 @@ const FractionListB: FC<RouteComponentProps<IParams>> = props => {
         entryStore.getTestsEntering(data)
     }
 
+    const handleClickLink = () => {
+        navigate(`/entry/print/${entryStore.testProblemData.id}`, {
+            state: {
+                linkData: `/entry/${entryStore.testProblemData.id}`,
+            },
+        })
+    }
+
     const buttonOption = {
         height: '36px',
         bgColor: '#E95C53',
@@ -137,6 +147,8 @@ const FractionListB: FC<RouteComponentProps<IParams>> = props => {
                     ))}
                 </Ul>
                 <ButtonWrap>
+                    <Button onClick={handleClickLink}>打印答案</Button>
+                    &nbsp;&nbsp;&nbsp;
                     <Button options={buttonOption} onClick={handleClickNext}>
                         保存该题录入
                     </Button>
